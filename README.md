@@ -13,13 +13,13 @@ Versi: **1.0.0**
 *Berikut adalah cuplikan antarmuka dari template PustakaKu:*
 
 **Tampilan Utama / Hero Section**
-![Header Depan][(Header_Depan.jpg)](https://github.com/alpinjolala/PustakaKu_Blogger-Templates/blob/main/Header_Depan.png)
+![Header Depan](https://github.com/alpinjolala/PustakaKu_Blogger-Templates/blob/main/Header_Depan.png)
 
 **Dashboard Utama**
-![Dashboard][(Dashboard.jpg)](https://github.com/alpinjolala/PustakaKu_Blogger-Templates/blob/main/Dashboard.png)
+![Dashboard](https://github.com/alpinjolala/PustakaKu_Blogger-Templates/blob/main/Dashboard.png)
 
 **Tampilan Jelajah Koleksi & Slider Buku**
-![Jelajahi Koleksi][(Jelajahi Koleksi.png)](https://github.com/alpinjolala/PustakaKu_Blogger-Templates/blob/main/Jelajahi%20Koleksi.png)
+![Jelajahi Koleksi](https://github.com/alpinjolala/PustakaKu_Blogger-Templates/blob/main/Jelajahi%20Koleksi.png)
 
 ## ✨ Fitur Utama
 
