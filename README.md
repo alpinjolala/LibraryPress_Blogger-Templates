@@ -104,6 +104,6 @@ Agar postingan buku tampil optimal (seperti buku dengan cover):
 
 Template ini dibuat oleh [Muhammad Alfin Ramadhan, M.A.](https://www.muhalfinramadhan.web.id)
 
-Dilarang menjual ulang template ini tanpa izin dari pembuat. Anda bebas menggunakannya untuk website instansi atau sekolah Anda.
+Dilarang menjual template ini tanpa izin dari pembuat. Anda bebas menggunakannya untuk website instansi atau sekolah Anda. Salah satu bentuk menghargai adalah dengan tidak menghapus atribusi atau copyright pada footer blogger Anda.
 
 Dibuat dengan ❤️ untuk meningkatkan literasi sekolah di Indonesia.
