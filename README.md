@@ -12,11 +12,11 @@ Versi: **1.0.0**
 *Berikut adalah cuplikan antarmuka dari template PustakaKu:*
 
 **Tampilan Utama / Hero Section**  
-![Tampilan Depan](Header_Depan.jpg)  
-![Dasbor / Hero](Dashboard.jpg)
+![Tampilan Depan] https://github.com/alpinjolala/PustakaKu_Blogger-Templates/blob/main/Header_Depan.png  
+![Dasbor / Hero] https://github.com/alpinjolala/PustakaKu_Blogger-Templates/blob/main/Dashboard.png
 
 **Tampilan Jelajah Koleksi & Slider Buku**  
-![Jelajahi Koleksi](Jelajahi Koleksi.png)
+![Jelajahi Koleksi](https://github.com/alpinjolala/PustakaKu_Blogger-Templates/blob/main/Jelajahi%20Koleksi.png)
 
 ---
 
