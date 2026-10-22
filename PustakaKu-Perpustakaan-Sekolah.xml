@@ -1,0 +1,1981 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true' b:templateVersion='1.0.0' expr:dir='data:blog.languageDirection' expr:lang='data:blog.localeUnderscoreDelimited'
+  xmlns='http://www.w3.org/1999/xhtml'
+  xmlns:b='http://www.google.com/2005/gml/b'
+  xmlns:data='http://www.google.com/2005/gml/data'
+  xmlns:expr='http://www.google.com/2005/gml/expr'>
+  <head>
+    <meta content='width=device-width, initial-scale=1, minimum-scale=1' name='viewport'/>
+    <b:include data='blog' name='all-head-content'/>
+    <title>
+      <data:view.title.escaped/>
+    </title>
+    <meta expr:content='data:skin.vars.primary_color' name='theme-color'/>
+    <!-- Open Graph / Twitter -->
+    <meta expr:content='data:blog.title.escaped' property='og:site_name'/>
+    <meta expr:content='data:view.title.escaped' property='og:title'/>
+    <meta expr:content='data:view.description.escaped' property='og:description'/>
+    <b:tag cond='data:view.featuredImage' expr:content='resizeImage(data:view.featuredImage, 1200)' name='meta' property='og:image'/>
+    <meta content='summary_large_image' name='twitter:card'/>
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com' rel='preconnect'/>
+    <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+    <link href='https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
+    <!-- Dark mode early init (mencegah kedipan) -->
+    <script>
+  //                                    <![CDATA[
+  (function(){var h=document.documentElement;h.className+=' js';try{var d=localStorage.getItem('pk-dark');if(d==='1'||(d===null&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)){h.className+=' dark'}}catch(e){}})();
+  //]]>
+    </script>
+    <b:if cond='!data:view.isLayoutMode'>
+      <b:skin version='1.0.0'><![CDATA[/*
+-----------------------------------------------
+Blogger Template Style
+Name      : PustakaKu - Perpustakaan Sekolah
+Version   : 1.0.0
+Style     : Modern cerah (Biru + Oranye) dengan Mode Gelap
+Author    : Muhammad Alfin Ramadhan, M.A.
+Author Url: https://www.muhalfinramadhan.web.id
+-----------------------------------------------*/
+
+/*-- Theme Designer Options --
+<Variable name="keycolor" description="Main Color" type="color" default="#1d4ed8" value="#1d4ed8"/>
+<Group description="Warna Tema" selector="body">
+  <Variable name="primary.color" description="Warna Primer" type="color" default="#1d4ed8" value="#1d4ed8"/>
+  <Variable name="primary.dark" description="Warna Primer Gelap" type="color" default="#1e3a8a" value="#1e3a8a"/>
+  <Variable name="accent.color" description="Warna Aksen" type="color" default="#f97316" value="#f97316"/>
+</Group>
+<Group description="Teks dan Latar" selector="body">
+  <Variable name="ink.color" description="Warna Judul" type="color" default="#0f172a" value="#0f172a"/>
+  <Variable name="text.color" description="Warna Teks" type="color" default="#475569" value="#475569"/>
+  <Variable name="bg.color" description="Latar Halaman" type="color" default="#f5f7fb" value="#f5f7fb"/>
+  <Variable name="card.bg" description="Latar Kartu" type="color" default="#ffffff" value="#ffffff"/>
+</Group>
+<Group description="Footer" selector="#footer">
+  <Variable name="footer.bg" description="Latar Footer" type="color" default="#0b1a3f" value="#0b1a3f"/>
+</Group>
+<Variable name="body.background.color" description="Comments Background" hideEditor="true" type="color" default="transparent" value="transparent"/>
+<Variable name="body.text.color" description="Comments Text Color" hideEditor="true" type="color" default="#475569" value="#475569"/>
+<Variable name="body.link.color" description="Comments Link Color" hideEditor="true" type="color" default="#1d4ed8" value="#1d4ed8"/>
+<Variable name="body.text.font" description="Comments Font" hideEditor="true" type="font" default="normal 400 15px Arial, sans-serif" value="normal 400 15px Arial, sans-serif"/>
+-- End Options --*/
+
+/* ===== 1. Design ===== */
+:root{
+--primary:$(primary.color);
+--primary-dark:$(primary.dark);
+--accent:$(accent.color);
+--ink:$(ink.color);
+--text:$(text.color);
+--bg:$(bg.color);
+--card:$(card.bg);
+--footer:$(footer.bg);
+--muted:#8390a6;
+--line:#e4e9f2;
+--soft:rgba(29,78,216,.08);
+--accent-soft:rgba(249,115,22,.12);
+--header-bg:rgba(255,255,255,.86);
+--radius:18px;
+--radius-sm:12px;
+--shadow-sm:0 1px 2px rgba(16,24,40,.05),0 1px 3px rgba(16,24,40,.07);
+--shadow:0 12px 32px -14px rgba(16,24,40,.22);
+--shadow-lg:0 26px 60px -22px rgba(29,78,216,.45);
+--font:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+--header-h:74px;
+--ease:cubic-bezier(.22,.61,.36,1);
+}
+html.dark{
+--ink:#eef2ff;
+--text:#a9b4ca;
+--muted:#6f7d98;
+--bg:#0a1020;
+--card:#111a2e;
+--line:#1f2b46;
+--soft:rgba(96,140,255,.14);
+--accent-soft:rgba(249,115,22,.16);
+--header-bg:rgba(10,16,32,.82);
+--shadow:0 12px 32px -14px rgba(0,0,0,.7);
+--shadow-lg:0 26px 60px -22px rgba(0,0,0,.8);
+}
+
+/* ===== 2. Reset & Base ===== */
+*,*:before,*:after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--font);font-size:16px;line-height:1.7;color:var(--text);background:var(--bg);-webkit-font-smoothing:antialiased;transition:background-color .35s,color .35s;overflow-x:hidden}
+a{color:inherit;text-decoration:none;transition:color .2s,background-color .2s,border-color .2s}
+img{max-width:100%;height:auto;display:block;border:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;padding:0}
+h1,h2,h3,h4,h5,h6{color:var(--ink);line-height:1.3;margin:0 0 .5em;font-weight:700;letter-spacing:-.01em}
+ul,ol{margin:0;padding:0;list-style:none}
+p{margin:0 0 1em}
+::selection{background:var(--accent);color:#fff}
+.section,.widget{margin:0;padding:0}
+.section.no-items{display:none}
+.container{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.ic{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;vertical-align:middle}
+.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ===== 3. Buttons & Chips ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:46px;padding:0 22px;border-radius:999px;font-weight:700;font-size:15px;white-space:nowrap;transition:transform .2s var(--ease),box-shadow .25s,background-color .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 10px 24px -10px var(--primary)}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-accent{background:var(--accent);color:#fff;box-shadow:0 10px 24px -10px var(--accent)}
+.btn-accent:hover{filter:brightness(1.06)}
+.btn-ghost{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+.btn.loading{opacity:.7;pointer-events:none}
+.btn.loading:after{content:'';width:16px;height:16px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .7s linear infinite}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;background:var(--soft);color:var(--primary);font-size:12.5px;font-weight:700;line-height:1.4}
+html.dark .chip{color:#9db8ff}
+a.chip:hover{background:var(--primary);color:#fff}
+.chip-count{background:rgba(255,255,255,.65);color:var(--primary);border-radius:999px;padding:0 7px;font-size:11px}
+html.dark .chip-count{background:rgba(0,0,0,.25);color:#cfe0ff}
+.icon-btn{width:42px;height:42px;border-radius:12px;display:inline-grid;place-items:center;color:var(--ink);transition:background-color .2s,color .2s,transform .2s}
+.icon-btn:hover{background:var(--soft);color:var(--primary)}
+.icon-btn .i-sun{display:none}
+html.dark .icon-btn .i-sun{display:block}
+html.dark .icon-btn .i-moon{display:none}
+
+/* ===== 4. Topbar ===== */
+.topbar{background:var(--primary-dark);color:#d6e2ff;font-size:13px}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:40px}
+.topbar .widget-content{display:flex;flex-wrap:wrap;gap:6px 22px}
+.topbar .widget-content span{display:inline-flex;align-items:center;gap:7px}
+.topbar .ic{width:15px;height:15px;color:var(--accent)}
+.topbar-right{display:flex;align-items:center;gap:8px;font-weight:600}
+.topbar-right a{color:#fff;opacity:.9}
+.topbar-right a:hover{opacity:1;color:var(--accent)}
+
+/* ===== 5. Header ===== */
+.site-header{position:sticky;top:0;z-index:50;background:var(--header-bg);-webkit-backdrop-filter:saturate(180%) blur(14px);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line);transition:box-shadow .3s,background-color .35s}
+.site-header.scrolled{box-shadow:0 10px 30px -18px rgba(16,24,40,.35)}
+.header-inner{display:flex;align-items:center;gap:20px;height:var(--header-h)}
+.brand{display:flex;align-items:center;gap:12px;color:var(--ink)}
+.brand-mark{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--primary),var(--accent));box-shadow:0 10px 22px -10px var(--primary);transition:transform .4s var(--ease)}
+.brand:hover .brand-mark{transform:rotate(-8deg) scale(1.05)}
+.brand-mark .ic{width:24px;height:24px}
+.brand-text{display:flex;flex-direction:column;line-height:1.2}
+.brand-title{font-size:19px;font-weight:800;letter-spacing:-.02em}
+.brand-desc{font-size:12px;color:var(--muted);font-weight:500;max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-logo{max-height:48px;width:auto}
+.main-nav{flex:1;display:flex;justify-content:center}
+.nav-menu{display:flex;align-items:center;gap:2px}
+.nav-menu li{position:relative}
+.nav-menu > li > a{display:flex;align-items:center;gap:4px;padding:10px 14px;border-radius:10px;font-weight:600;font-size:15px;color:var(--ink)}
+.nav-menu > li > a:hover,.nav-menu > li:hover > a{background:var(--soft);color:var(--primary)}
+html.dark .nav-menu > li > a:hover,html.dark .nav-menu > li:hover > a{color:#9db8ff}
+.nav-menu .caret{width:16px;height:16px;transition:transform .25s}
+.nav-menu li:hover > a .caret{transform:rotate(180deg)}
+.sub-menu{position:absolute;top:100%;left:0;min-width:230px;padding:8px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(10px);transition:all .25s var(--ease);z-index:20}
+.nav-menu li:hover > .sub-menu{opacity:1;visibility:visible;transform:translateY(4px)}
+.sub-menu a{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;border-radius:9px;font-size:14.5px;font-weight:500;color:var(--text)}
+.sub-menu a:hover{background:var(--soft);color:var(--primary);padding-left:16px}
+.sub-menu .sub-menu{top:-9px;left:100%;margin-left:6px}
+.sub-menu .caret{transform:rotate(-90deg)}
+.nav-menu li.has-mega{position:static}
+.mega{position:absolute;top:100%;left:20px;right:20px;padding:20px;background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(10px);transition:all .25s var(--ease);z-index:20}
+.nav-menu li.has-mega:hover .mega{opacity:1;visibility:visible;transform:translateY(0)}
+.main-nav .container-rel{position:relative}
+.mega-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.mega-item{display:block}
+.mega-thumb{display:block;position:relative;padding-top:62%;border-radius:12px;overflow:hidden;background:var(--soft)}
+.mega-thumb img,.mega-thumb .ph{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.mega-item:hover .mega-thumb img{transform:scale(1.06)}
+.mega-title{display:block;margin-top:10px;font-weight:700;font-size:14.5px;color:var(--ink);line-height:1.4}
+.mega-item:hover .mega-title{color:var(--primary)}
+.mega-date{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.header-actions{display:flex;align-items:center;gap:4px;margin-left:auto}
+.menu-toggle{display:none}
+.search-panel{position:absolute;left:0;right:0;top:100%;background:var(--card);border-bottom:1px solid var(--line);box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .25s var(--ease)}
+.search-open .search-panel{opacity:1;visibility:visible;transform:none}
+.sp-form{display:flex;align-items:center;gap:12px;height:76px}
+.sp-form .ic{color:var(--muted)}
+.sp-form input{flex:1;border:0;outline:0;background:transparent;font-size:19px;font-weight:600;color:var(--ink)}
+
+/* ===== 6. Hero ===== */
+.hero{position:relative;overflow:hidden;color:#fff;padding:76px 0 150px;background:radial-gradient(900px 480px at 88% -10%,rgba(249,115,22,.35),transparent 60%),radial-gradient(800px 480px at -10% 110%,rgba(56,189,248,.28),transparent 60%),linear-gradient(135deg,var(--primary-dark) 0%,var(--primary) 60%,#2f6bff 100%)}
+.hero:before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background-image:radial-gradient(rgba(255,255,255,.14) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:linear-gradient(to bottom,#000 10%,transparent 85%);mask-image:linear-gradient(to bottom,#000 10%,transparent 85%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);font-size:13px;font-weight:600;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);margin-bottom:20px}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(249,115,22,.3);animation:pulse 2s infinite}
+.hero-title{font-size:52px;line-height:1.1;font-weight:800;color:#fff;margin:0 0 18px;letter-spacing:-.03em}
+.hero-title .hl{background:linear-gradient(90deg,#ffd6b0,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-desc{font-size:18px;color:rgba(255,255,255,.86);max-width:560px;margin-bottom:28px}
+.hero-desc p:last-child{margin:0}
+.hero-search{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:22px;padding:10px;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 30px 60px -30px rgba(0,0,0,.45);max-width:600px}
+.hs-tabs{display:flex;gap:6px;padding:2px 4px 10px}
+.hs-tab{padding:7px 14px;border-radius:999px;font-size:13.5px;font-weight:700;color:rgba(255,255,255,.8);transition:all .2s}
+.hs-tab:hover{color:#fff;background:rgba(255,255,255,.1)}
+.hs-tab.active{background:#fff;color:var(--primary-dark)}
+.hs-field{display:flex;align-items:center;gap:10px;background:#fff;border-radius:16px;padding:6px 6px 6px 16px}
+.hs-field .ic{color:#94a3b8}
+.hs-field input{flex:1;min-width:0;border:0;outline:0;background:transparent;font-size:16px;color:#0f172a;height:46px}
+.hs-field input::placeholder{color:#94a3b8}
+.hero-links{margin-top:22px}
+.quick-links{display:flex;flex-wrap:wrap;gap:10px}
+.quick-links a{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);font-size:14px;font-weight:600;color:#fff;transition:all .25s var(--ease)}
+.quick-links a:hover{background:#fff;color:var(--primary-dark);transform:translateY(-2px)}
+.quick-links .ql-label{font-size:13px;color:rgba(255,255,255,.7);align-self:center;margin-right:4px;font-weight:600}
+.hero-art{position:relative;height:440px}
+.ha-glow{position:absolute;width:340px;height:340px;border-radius:50%;left:50%;top:50%;margin:-170px 0 0 -170px;background:radial-gradient(circle,rgba(255,255,255,.35),transparent 65%);filter:blur(10px)}
+.ha-book{position:absolute;width:200px;height:292px;border-radius:6px 16px 16px 6px;background-size:cover;background-position:center;box-shadow:0 30px 50px -20px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.12);overflow:hidden;transition:transform .6s var(--ease)}
+.ha-book:before{content:'';position:absolute;top:0;bottom:0;left:0;width:14px;background:linear-gradient(90deg,rgba(0,0,0,.35),rgba(255,255,255,.18),rgba(0,0,0,0));z-index:2}
+.ha-lines{position:absolute;left:30px;right:22px;top:34px;height:120px;background:linear-gradient(rgba(255,255,255,.9),rgba(255,255,255,.9)) 0 0/70% 12px no-repeat,linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.55)) 0 26px/90% 8px no-repeat,linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.55)) 0 42px/60% 8px no-repeat}
+.ha-book.has-img .ha-lines{display:none}
+.ha-book.b1{left:6%;top:70px;transform:rotate(-12deg);background-image:linear-gradient(160deg,#fb923c,#ea580c)}
+.ha-book.b2{left:31%;top:30px;z-index:3;transform:rotate(2deg);background-image:linear-gradient(160deg,#38bdf8,#1d4ed8)}
+.ha-book.b3{right:2%;top:96px;transform:rotate(13deg);background-image:linear-gradient(160deg,#a78bfa,#6d28d9)}
+.hero-art:hover .b1{transform:rotate(-16deg) translate(-10px,-6px)}
+.hero-art:hover .b3{transform:rotate(17deg) translate(10px,-6px)}
+.hero-art:hover .b2{transform:rotate(0) translateY(-10px)}
+.ha-chip{position:absolute;z-index:4;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:14px;background:rgba(255,255,255,.95);color:#0f172a;font-weight:700;font-size:14px;box-shadow:0 18px 40px -18px rgba(0,0,0,.5);animation:float 6s ease-in-out infinite}
+.ha-chip span{font-size:18px}
+.ha-chip.c1{left:0;bottom:56px}
+.ha-chip.c2{right:4%;top:24px;animation-delay:-2s}
+.ha-chip.c3{right:12%;bottom:24px;animation-delay:-4s}
+.hero-wave{position:absolute;left:0;right:0;bottom:-1px;height:90px;width:100%;display:block}
+.hero-wave path{fill:var(--bg);transition:fill .35s}
+
+/* ===== 7. Home Blocks ===== */
+.stats-wrap{position:relative;z-index:5;margin-top:-92px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat{display:flex;align-items:center;gap:16px;padding:22px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .3s var(--ease),box-shadow .3s}
+.stat:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.stat-ico{width:58px;height:58px;border-radius:16px;display:grid;place-items:center;font-size:27px;background:var(--soft);flex-shrink:0}
+.stat:nth-child(even) .stat-ico{background:var(--accent-soft)}
+.stat-num{display:block;font-size:28px;line-height:1.1;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.stat-label{display:block;font-size:14px;color:var(--muted);font-weight:500;margin-top:4px}
+.home-block{padding-top:64px}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px}
+.st-kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.st-kicker:before{content:'';width:22px;height:3px;border-radius:3px;background:var(--accent)}
+.section-title{font-size:30px;font-weight:800;margin:0;letter-spacing:-.025em}
+h1.section-title .st-kicker,h2.section-title .st-kicker{display:flex}
+.sh-actions{display:flex;align-items:center;gap:8px}
+.link-more{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:14.5px;color:var(--primary);padding:8px 4px}
+html.dark .link-more{color:#9db8ff}
+.link-more .ic{width:18px;height:18px;transition:transform .25s}
+.link-more:hover .ic{transform:translateX(4px)}
+.slider-btn{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--card);border:1px solid var(--line);color:var(--ink);transition:all .2s}
+.slider-btn:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.cat{--c:#1d4ed8;--cs:rgba(29,78,216,.1);position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:26px 14px 22px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s,border-color .35s}
+.cat:after{content:'';position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--c);transform:scaleX(0);transition:transform .35s var(--ease)}
+.cat:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:transparent}
+.cat:hover:after{transform:scaleX(1)}
+.cat-ico{width:66px;height:66px;border-radius:20px;display:grid;place-items:center;font-size:30px;font-weight:800;color:var(--c);background:var(--cs);transition:transform .35s var(--ease)}
+.cat:hover .cat-ico{transform:scale(1.1) rotate(-6deg)}
+.cat-name{font-weight:700;font-size:15px;color:var(--ink);line-height:1.35}
+.cat-go{font-size:12.5px;color:var(--muted);font-weight:600}
+.cat:nth-child(6n+2){--c:#f97316;--cs:rgba(249,115,22,.12)}
+.cat:nth-child(6n+3){--c:#10b981;--cs:rgba(16,185,129,.12)}
+.cat:nth-child(6n+4){--c:#8b5cf6;--cs:rgba(139,92,246,.12)}
+.cat:nth-child(6n+5){--c:#ec4899;--cs:rgba(236,72,153,.12)}
+.cat:nth-child(6n+6){--c:#0ea5e9;--cs:rgba(14,165,233,.12)}
+.book-row{display:grid;grid-auto-flow:column;grid-auto-columns:184px;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 4px 22px;scrollbar-width:none;-ms-overflow-style:none}
+.book-row::-webkit-scrollbar{display:none}
+.book{display:block;scroll-snap-align:start}
+.book-cover{position:relative;display:block;padding-top:150%;border-radius:6px 14px 14px 6px;overflow:hidden;background:linear-gradient(160deg,var(--primary),var(--primary-dark));box-shadow:0 18px 30px -18px rgba(16,24,40,.55);transition:transform .45s var(--ease),box-shadow .45s}
+.book-cover img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.book-cover:after{content:'';position:absolute;top:0;bottom:0;left:0;width:12px;background:linear-gradient(90deg,rgba(0,0,0,.3),rgba(255,255,255,.18),rgba(0,0,0,0))}
+.book:hover .book-cover{transform:translateY(-8px) rotate(-1.5deg);box-shadow:0 30px 40px -20px rgba(16,24,40,.6)}
+.book-ph{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:flex-end;padding:18px 16px 18px 22px;color:#fff;font-weight:800;font-size:15px;line-height:1.3}
+.book-badge{position:absolute;top:10px;right:10px;z-index:2;padding:3px 10px;border-radius:999px;background:var(--accent);color:#fff;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.book-title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:14px;font-weight:700;font-size:15px;line-height:1.4;color:var(--ink)}
+.book:hover .book-title{color:var(--primary)}
+.book-genre{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+.skel{border-radius:14px;background:linear-gradient(90deg,var(--line) 0%,var(--card) 50%,var(--line) 100%);background-size:200% 100%;animation:shimmer 1.3s linear infinite}
+.skel-book{height:276px;border-radius:6px 14px 14px 6px}
+.empty-note{padding:26px;border:2px dashed var(--line);border-radius:var(--radius);text-align:center;color:var(--muted);margin:0}
+.news-wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:24px}
+.news-feature{position:relative;display:block;min-height:420px;border-radius:var(--radius);overflow:hidden;background:var(--primary-dark);color:#fff}
+.news-feature img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.news-feature:hover img{transform:scale(1.05)}
+.news-feature:after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:linear-gradient(180deg,rgba(2,6,23,0) 30%,rgba(2,6,23,.88) 100%)}
+.nf-body{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:28px}
+.nf-body .chip{background:var(--accent);color:#fff}
+.nf-title{font-size:25px;line-height:1.3;color:#fff;margin:12px 0 8px}
+.nf-excerpt{font-size:14.5px;color:rgba(255,255,255,.82);margin:0 0 10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.nf-date{font-size:13px;color:rgba(255,255,255,.75);display:inline-flex;align-items:center;gap:6px}
+.nf-date .ic{width:15px;height:15px}
+.news-list{display:flex;flex-direction:column;gap:14px}
+.news-item{display:flex;gap:16px;align-items:center;padding:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);transition:transform .3s var(--ease),box-shadow .3s,border-color .3s}
+.news-item:hover{transform:translateX(6px);box-shadow:var(--shadow);border-color:transparent}
+.ni-thumb{position:relative;width:104px;height:80px;flex-shrink:0;border-radius:12px;overflow:hidden;background:var(--soft)}
+.ni-thumb img,.ni-thumb .ph{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+.ni-date{display:block;font-size:12.5px;font-weight:700;color:var(--accent);margin-bottom:4px}
+.ni-title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:700;color:var(--ink);line-height:1.4;font-size:15px}
+.news-item:hover .ni-title{color:var(--primary)}
+.ph{display:grid;place-items:center;color:var(--primary);background:var(--soft)}
+.ph .ic{width:30px;height:30px;opacity:.6}
+
+/* ===== 8. Main Layout & Cards ===== */
+.main-wrap{padding:64px 0 72px}
+body:not(.is-home) .main-wrap{padding-top:36px}
+.main-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:34px;align-items:start}
+.post-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.post-card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;transition:transform .35s var(--ease),box-shadow .35s,border-color .35s}
+.post-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+.card-thumb{position:relative;display:block;padding-top:60%;overflow:hidden;background:var(--soft)}
+.card-thumb img,.card-thumb .ph{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
+.post-card:hover .card-thumb img{transform:scale(1.06)}
+.card-thumb .chip{position:absolute;top:14px;left:14px;z-index:2;background:rgba(255,255,255,.94);color:var(--primary-dark);box-shadow:var(--shadow-sm)}
+.card-body{display:flex;flex-direction:column;flex:1;padding:20px 22px 22px}
+.card-title{font-size:19px;line-height:1.4;margin:0 0 10px}
+.card-title a:hover{color:var(--primary)}
+.card-excerpt{font-size:14.5px;color:var(--text);margin:0 0 18px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.card-meta{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:16px;border-top:1px dashed var(--line);font-size:13px;color:var(--muted)}
+.card-meta span{display:inline-flex;align-items:center;gap:6px}
+.card-meta .ic{width:16px;height:16px}
+.card-more{display:inline-flex;align-items:center;gap:4px;font-weight:700;color:var(--primary)}
+html.dark .card-more{color:#9db8ff}
+.card-more .ic{transition:transform .25s}
+.post-card:hover .card-more .ic{transform:translateX(4px)}
+.post-grid.book-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.book-grid .card-thumb{padding-top:150%}
+.book-grid .card-excerpt,.book-grid .card-meta{display:none}
+.book-grid .card-body{padding:14px 16px 18px}
+.book-grid .card-title{font-size:15.5px;margin:0}
+.pager{display:flex;justify-content:center;gap:12px;margin-top:38px}
+.archive-head{padding:26px 28px;margin-bottom:26px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);position:relative;overflow:hidden}
+.archive-head:after{content:'';position:absolute;right:-60px;top:-60px;width:180px;height:180px;border-radius:50%;background:var(--accent-soft)}
+.archive-head .section-title{position:relative;z-index:1}
+.empty-state{text-align:center;padding:60px 24px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius)}
+.empty-state .big{font-size:56px;line-height:1;margin-bottom:10px}
+
+/* ===== 9. Single Post ===== */
+.single{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:40px 44px}
+.breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);margin-bottom:18px;font-weight:600}
+.breadcrumb a:hover{color:var(--primary)}
+.breadcrumb .sep{opacity:.5}
+.single-title{font-size:36px;line-height:1.22;font-weight:800;letter-spacing:-.025em;margin:0 0 18px}
+.single-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;font-size:14px;color:var(--muted);padding-bottom:24px;margin-bottom:28px;border-bottom:1px solid var(--line)}
+.single-meta > *{display:inline-flex;align-items:center;gap:7px}
+.single-meta .ic{width:17px;height:17px}
+.single-meta a:hover{color:var(--primary)}
+.meta-author{color:var(--ink);font-weight:700}
+.meta-author img{width:32px;height:32px;border-radius:50%;object-fit:cover}
+.meta-avatar{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--primary)}
+.post-body{font-size:17px;line-height:1.85;color:var(--text);word-wrap:break-word}
+.post-body h2{font-size:26px;margin:1.6em 0 .6em}
+.post-body h3{font-size:21px;margin:1.5em 0 .6em}
+.post-body h4{font-size:18px;margin:1.4em 0 .6em}
+.post-body a{color:var(--primary);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px;text-decoration-color:rgba(29,78,216,.3)}
+html.dark .post-body a{color:#9db8ff}
+.post-body a:hover{text-decoration-color:var(--accent)}
+.post-body ul,.post-body ol{padding-left:1.4em;margin:0 0 1.2em}
+.post-body ul{list-style:disc}
+.post-body ol{list-style:decimal}
+.post-body li{margin:.35em 0}
+.post-body li::marker{color:var(--accent)}
+.post-body img{border-radius:14px;height:auto}
+.post-body .separator a,.post-body a img{text-decoration:none}
+.post-body blockquote{margin:1.6em 0;padding:20px 24px;border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 14px 14px 0;color:var(--ink);font-weight:500}
+.post-body table{width:100%;border-collapse:collapse;margin:1.4em 0;font-size:15px}
+.post-body table:not(.tr-caption-container) th,.post-body table:not(.tr-caption-container) td{padding:11px 14px;border:1px solid var(--line);text-align:left}
+.post-body table:not(.tr-caption-container) th{background:var(--soft);color:var(--ink)}
+.post-body .tr-caption{font-size:13px;color:var(--muted);padding-top:6px}
+.post-body pre,.post-body code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px}
+.post-body pre{background:#0f172a;color:#e2e8f0;padding:18px 20px;border-radius:14px;overflow:auto}
+.post-body :not(pre) > code{background:var(--soft);padding:2px 6px;border-radius:6px;color:var(--primary)}
+.post-body iframe{max-width:100%;border-radius:14px}
+.post-body hr{border:0;height:1px;background:var(--line);margin:2em 0}
+.post-tags{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:30px}
+.post-tags .lbl{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--ink);font-size:14px;margin-right:4px}
+.post-share{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:22px;padding:18px 20px;border-radius:16px;background:var(--bg);border:1px solid var(--line)}
+.post-share .lbl{font-weight:700;color:var(--ink);font-size:14px;margin-right:auto}
+.share-btn{width:42px;height:42px;border-radius:12px;display:inline-grid;place-items:center;color:#fff;transition:transform .2s var(--ease),filter .2s}
+.share-btn:hover{transform:translateY(-3px);filter:brightness(1.08)}
+.share-btn.wa{background:#22c55e}.share-btn.fb{background:#1877f2}.share-btn.x{background:#0f172a}.share-btn.tg{background:#229ed9}
+.share-btn.copy{background:var(--accent)}
+.share-btn.copy.done{background:#10b981}
+html.dark .share-btn.x{background:#334155}
+.ic.fill{fill:currentColor;stroke:none}
+.post-block{margin-top:30px}
+.block-title{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;margin:0 0 20px}
+.block-title:before{content:'';width:6px;height:24px;border-radius:6px;background:linear-gradient(var(--primary),var(--accent))}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.rel-item{display:block}
+.rel-thumb{position:relative;display:block;padding-top:64%;border-radius:14px;overflow:hidden;background:var(--soft)}
+.rel-thumb img,.rel-thumb .ph{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.rel-item:hover .rel-thumb img{transform:scale(1.06)}
+.rel-title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:10px;font-weight:700;font-size:15px;line-height:1.4;color:var(--ink)}
+.rel-item:hover .rel-title{color:var(--primary)}
+.rel-date{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.post-nav{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.post-nav a{display:flex;flex-direction:column;gap:4px;padding:18px 20px;background:var(--card);border:1px solid var(--line);border-radius:16px;transition:all .25s var(--ease)}
+.post-nav a:hover{border-color:var(--primary);transform:translateY(-3px)}
+.post-nav .pn-dir{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.post-nav .pn-txt{font-weight:700;color:var(--ink)}
+.post-nav .next{text-align:right;grid-column:2}
+.ad-slot:empty{display:none}
+.ad-slot{margin:24px 0}
+
+/* ===== 10. Comments ===== */
+.comments{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:32px 36px;margin-top:30px}
+.comment-note{font-size:14.5px;color:var(--muted);background:var(--bg);border-radius:12px;padding:14px 16px}
+.comments .comment-thread ol{list-style:none;margin:0;padding:0}
+.comments .comment-thread li.comment{position:relative;margin:0 0 18px;padding:0}
+.comments .comment-block{margin-left:58px;padding:16px 18px;background:var(--bg);border-radius:4px 16px 16px 16px}
+.comments .avatar-image-container{position:absolute;left:0;top:0;width:44px;height:44px;border-radius:50%;overflow:hidden;background:var(--soft)}
+.comments .avatar-image-container img{width:100%;height:100%;object-fit:cover}
+.comments .comment-header .user{font-weight:800;color:var(--ink);font-style:normal}
+.comments .comment-header .user a{color:var(--ink)}
+.comments .datetime{margin-left:8px;font-size:12.5px}
+.comments .datetime a{color:var(--muted)}
+.comments .comment-content{margin:6px 0 0;font-size:15px;line-height:1.7}
+.comments .comment-actions{margin-top:8px;font-size:13px;font-weight:700}
+.comments .comment-actions a{color:var(--primary);margin-right:14px}
+.comments .thread-toggle,.comments .continue{font-size:13px;font-weight:700}
+.comments .comment-replies{margin:16px 0 0 58px}
+.comments .thread-expanded .thread-count a,.comments .thread-collapsed .thread-count a{color:var(--muted)}
+.comments .loadmore{display:none}
+.comment-form{margin-top:22px}
+.comment-form.is-reply{margin:12px 0 0;padding:14px;border:1px dashed var(--line);border-radius:14px}
+.cancel-reply{display:none;font-size:13px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.comment-form.is-reply .cancel-reply{display:inline-block}
+#comment-editor{width:100%;border:0;min-height:90px}
+
+/* ===== 11. Sidebar ===== */
+.sidebar .widget{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;margin-bottom:26px}
+.sidebar .widget:last-child{margin-bottom:0}
+.sidebar .widget-title,.sidebar .widget > h2,.sidebar .widget > h3.title{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:800;margin:0 0 18px;color:var(--ink)}
+.sidebar .widget-title:before,.sidebar .widget > h2:before,.sidebar .widget > h3.title:before{content:'';width:5px;height:20px;border-radius:5px;background:linear-gradient(var(--primary),var(--accent))}
+.sidebar .AdSense,.sidebar .widget.is-ad{padding:0;background:none;border:0}
+.open-status{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;font-size:13.5px;font-weight:800;margin-bottom:14px}
+.open-status small{font-weight:600;opacity:.8}
+.open-status .dot{width:9px;height:9px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
+.open-status.is-open{background:rgba(16,185,129,.12);color:#059669}
+.open-status.is-closed{background:rgba(239,68,68,.1);color:#dc2626}
+.hours-list li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+.hours-list li:last-child{border-bottom:0}
+.hours-list b{color:var(--ink);font-weight:700}
+.hours-list li.closed b{color:#dc2626}
+.hours-list li.today{color:var(--primary);font-weight:700}
+.hours-note{font-size:13px;color:var(--muted);margin:12px 0 0}
+.pop-list{display:flex;flex-direction:column;gap:16px;counter-reset:pop}
+.pop-item{display:flex;gap:14px;align-items:center}
+.pop-thumb{position:relative;width:76px;height:76px;flex-shrink:0;border-radius:14px;overflow:hidden;background:var(--soft)}
+.pop-thumb img,.pop-thumb .ph{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.pop-item:hover .pop-thumb img{transform:scale(1.08)}
+.pop-num{position:absolute;left:6px;top:6px;z-index:2;width:24px;height:24px;border-radius:8px;display:grid;place-items:center;background:var(--accent);color:#fff;font-size:12px;font-weight:800}
+.pop-title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:700;font-size:14.5px;line-height:1.45;color:var(--ink)}
+.pop-item:hover .pop-title{color:var(--primary)}
+.pop-date{display:block;font-size:12.5px;color:var(--muted);margin-top:4px}
+.chip-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.chip-cloud .chip{font-size:13px;padding:7px 13px}
+.list-links li a{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line);font-weight:600;font-size:14.5px;color:var(--ink)}
+.list-links li:last-child a{border-bottom:0}
+.list-links li a:hover{color:var(--primary);padding-left:6px}
+
+/* ===== 12. Footer ===== */
+#footer{position:relative;color:#b8c4e2;background:linear-gradient(160deg,var(--footer) 0%,#06102a 100%);overflow:hidden}
+#footer:before{content:'';position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(249,115,22,.22),transparent 65%)}
+.footer-cta{position:relative;margin-bottom:-60px;z-index:3}
+.cta-box{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:34px 40px;border-radius:24px;color:#fff;background:linear-gradient(120deg,var(--accent) 0%,#fb923c 50%,#f59e0b 100%);box-shadow:0 30px 60px -30px rgba(249,115,22,.75)}
+.cta-box h2{color:#fff;font-size:26px;margin:0 0 4px}
+.cta-box p{margin:0;opacity:.92}
+.cta-box .btn{background:#fff;color:#c2410c}
+.footer-main{position:relative;padding:120px 0 40px;display:grid;grid-template-columns:1.4fr 1fr 1.2fr;gap:44px}
+body:not(.has-cta) .footer-main{padding-top:64px}
+.f-title{color:#fff;font-size:17px;font-weight:800;margin:0 0 18px}
+.f-brand{display:flex;align-items:center;gap:12px;color:#fff;margin-bottom:16px}
+.f-brand .brand-title{font-size:20px}
+.f-content{font-size:14.5px;line-height:1.8}
+.f-content a:hover{color:var(--accent)}
+.f-links li a{display:inline-flex;align-items:center;gap:8px;padding:6px 0;font-size:14.5px;color:#b8c4e2;transition:all .2s}
+.f-links li a:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);opacity:.7}
+.f-links li a:hover{color:#fff;transform:translateX(4px)}
+.f-contact li{display:flex;gap:12px;padding:7px 0;font-size:14.5px}
+.f-contact .ic{width:18px;height:18px;color:var(--accent);margin-top:4px}
+.social{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.social a{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.08);color:#fff;transition:all .25s var(--ease)}
+.social a:hover{background:var(--accent);transform:translateY(-3px)}
+.footer-bottom{position:relative;border-top:1px solid rgba(255,255,255,.1)}
+.footer-bottom .container{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;min-height:68px;font-size:13.5px}
+.footer-bottom a{color:#fff}
+.footer-bottom a:hover{color:var(--accent)}
+.footer-ads{padding:0 0 30px}
+
+/* ===== 13. Floating / Drawer ===== */
+#back-top{position:fixed;right:22px;bottom:22px;z-index:40;width:50px;height:50px;border-radius:16px;display:grid;place-items:center;background:var(--primary);color:#fff;box-shadow:0 16px 30px -12px var(--primary);opacity:0;visibility:hidden;transform:translateY(16px);transition:all .3s var(--ease)}
+#back-top.show{opacity:1;visibility:visible;transform:none}
+#back-top:hover{background:var(--accent)}
+.drawer{position:fixed;top:0;left:0;bottom:0;z-index:70;width:310px;max-width:86%;background:var(--card);box-shadow:var(--shadow-lg);transform:translateX(-105%);transition:transform .35s var(--ease);display:flex;flex-direction:column}
+.drawer-open .drawer{transform:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line)}
+.drawer-body{flex:1;overflow-y:auto;padding:12px}
+.drawer-nav li{position:relative}
+.drawer-nav a{display:block;padding:12px 44px 12px 14px;border-radius:10px;font-weight:600;color:var(--ink)}
+.drawer-nav a:hover{background:var(--soft);color:var(--primary)}
+.drawer-nav .sub-menu,.drawer-nav .mega{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;padding:0 0 0 14px;display:none;background:none;min-width:0}
+.drawer-nav li.open > .sub-menu{display:block}
+.drawer-nav .mega{display:none!important}
+.drawer-nav .sub-toggle{position:absolute;right:4px;top:4px;width:38px;height:38px;border-radius:10px;display:grid;place-items:center;color:var(--muted)}
+.drawer-nav li.open > .sub-toggle .ic{transform:rotate(180deg)}
+.drawer-nav .caret{display:none}
+.drawer-foot{padding:16px 18px;border-top:1px solid var(--line);display:flex;gap:10px}
+.overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:60;background:rgba(2,6,23,.5);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:all .3s}
+.drawer-open .overlay{opacity:1;visibility:visible}
+.drawer-open{overflow:hidden}
+.ads-holder{display:none}
+.top-ads{padding:20px 0 0}
+.top-ads .widget{text-align:center}
+
+/* ===== 14. Error Page ===== */
+.error-404{text-align:center;padding:70px 24px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius)}
+.error-404 .code{font-size:110px;line-height:1;font-weight:800;letter-spacing:-.05em;background:linear-gradient(135deg,var(--primary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.error-404 h1{font-size:26px;margin:10px 0}
+.error-404 form{display:flex;gap:10px;max-width:440px;margin:24px auto}
+.error-404 input{flex:1;min-width:0;height:46px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:var(--bg);outline:0}
+.error-404 input:focus{border-color:var(--primary)}
+
+/* ===== 15. Animations ===== */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(249,115,22,.45)}70%{box-shadow:0 0 0 10px rgba(249,115,22,0)}100%{box-shadow:0 0 0 0 rgba(249,115,22,0)}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.js .reveal{opacity:1;transform:none}}
+
+/* ===== 16. Responsive ===== */
+@media (max-width:1100px){
+.hero-title{font-size:44px}
+.cat-grid{grid-template-columns:repeat(3,1fr)}
+.main-grid{grid-template-columns:minmax(0,1fr) 300px;gap:26px}
+.post-grid.book-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.nav-menu > li > a{padding:10px 10px;font-size:14.5px}
+}
+@media (max-width:980px){
+.main-nav{display:none}
+.menu-toggle{display:inline-grid}
+.hero{padding:56px 0 140px}
+.hero-grid{grid-template-columns:1fr}
+.hero-art{display:none}
+.stats-grid{grid-template-columns:repeat(2,1fr)}
+.main-grid{grid-template-columns:1fr}
+.news-wrap{grid-template-columns:1fr}
+.news-feature{min-height:340px}
+.footer-main{grid-template-columns:1fr 1fr}
+.footer-main > :first-child{grid-column:1/-1}
+.cta-box{flex-direction:column;align-items:flex-start;padding:28px}
+}
+@media (max-width:640px){
+body{font-size:15px}
+.container{padding:0 16px}
+.topbar{display:none}
+:root{--header-h:64px}
+.brand-desc{display:none}
+.brand-mark{width:40px;height:40px}
+.hero-title{font-size:34px}
+.hero-desc{font-size:16px}
+.hs-field{padding-left:12px}
+.hs-field .btn{padding:0 16px}
+.stats-wrap{margin-top:-100px}
+.stats-grid{gap:12px}
+.stat{flex-direction:column;align-items:flex-start;gap:10px;padding:16px}
+.stat-ico{width:46px;height:46px;font-size:22px;border-radius:12px}
+.stat-num{font-size:22px}
+.home-block{padding-top:48px}
+.section-title{font-size:24px}
+.section-head{flex-wrap:wrap}
+.cat-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+.book-row{grid-auto-columns:148px;gap:16px}
+.post-grid{grid-template-columns:1fr}
+.post-grid.book-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.single{padding:24px 20px}
+.single-title{font-size:27px}
+.post-body{font-size:16px}
+.related-grid{grid-template-columns:1fr 1fr}
+.related-grid .rel-item:nth-child(3){display:none}
+.comments{padding:22px 18px}
+.comments .comment-block{margin-left:52px}
+.comments .comment-replies{margin-left:20px}
+.post-nav{grid-template-columns:1fr}
+.post-nav .next{grid-column:auto}
+.footer-main{grid-template-columns:1fr;gap:34px}
+.cta-box h2{font-size:21px}
+.sh-actions .slider-btn{display:none}
+}
+]]>      </b:skin>
+    </b:if>
+    <b:if cond='data:view.isLayoutMode'>
+      <b:template-skin><![CDATA[
+body#layout{background:#f5f7fb;padding:70px 10px 20px;font-family:Arial,sans-serif;position:relative}
+body#layout:before{content:'PustakaKu - Perpustakaan Sekolah';position:absolute;top:20px;left:0;right:0;text-align:center;font-size:22px;font-weight:bold;color:#1d4ed8}
+body#layout div.section{background:#e8eefc!important;border:0;margin:0 0 12px!important;padding:14px!important;border-radius:10px}
+body#layout .section h4{font-size:13px;text-transform:uppercase;color:#1e3a8a;margin:0 0 6px}
+body#layout .container{max-width:100%;padding:0}
+body#layout .topbar,body#layout .site-header,body#layout .hero,body#layout #footer{background:none;color:#000;padding:0;position:static}
+body#layout .header-inner,body#layout .hero-grid,body#layout .main-grid,body#layout .footer-main{display:flex;gap:10px;height:auto;padding:0}
+body#layout .header-inner > *,body#layout .hero-grid > *,body#layout .footer-main > *{flex:1}
+body#layout .main-grid > :first-child{width:66%}
+body#layout .main-grid > :last-child{width:34%}
+body#layout .hero-art,body#layout .hero-wave,body#layout .hero-search,body#layout .header-actions,body#layout .search-panel,body#layout .drawer,body#layout .overlay,body#layout #back-top,body#layout .footer-bottom,body#layout .topbar-right,body#layout .footer-cta{display:none}
+body#layout .ads-holder{display:block}
+body#layout .stats-wrap{margin:0}
+body#layout .home-block,body#layout .main-wrap{padding:0}
+body#layout div.ads-zone{background:#fde7d4!important}
+]]>      </b:template-skin>
+    </b:if>
+    <b:if cond='data:widgets.AdSense.first or data:blog.adsenseClientId'>
+      <script async='async' crossorigin='anonymous' src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js'/>
+    </b:if>
+  </head>
+  <body>
+    <b:class cond='data:view.isHomepage' name='is-home'/>
+    <b:class cond='data:view.isSingleItem' name='is-single'/>
+    <b:class cond='data:view.isMultipleItems' name='is-multiple'/>
+    <b:class cond='data:view.isError' name='is-error'/>
+
+    <!-- ===== SVG Icon Sprite ===== -->
+    <svg aria-hidden='true' style='position:absolute;width:0;height:0;overflow:hidden'>
+      <symbol id='i-search' viewBox='0 0 24 24'>
+        <path d='M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.35-4.35'/>
+      </symbol>
+      <symbol id='i-moon' viewBox='0 0 24 24'>
+        <path d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/>
+      </symbol>
+      <symbol id='i-sun' viewBox='0 0 24 24'>
+        <path d='M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42'/>
+      </symbol>
+      <symbol id='i-menu' viewBox='0 0 24 24'>
+        <path d='M3 12h18M3 6h18M3 18h12'/>
+      </symbol>
+      <symbol id='i-x' viewBox='0 0 24 24'>
+        <path d='M18 6L6 18M6 6l12 12'/>
+      </symbol>
+      <symbol id='i-chevron' viewBox='0 0 24 24'>
+        <path d='M6 9l6 6 6-6'/>
+      </symbol>
+      <symbol id='i-up' viewBox='0 0 24 24'>
+        <path d='M12 19V5M5 12l7-7 7 7'/>
+      </symbol>
+      <symbol id='i-left' viewBox='0 0 24 24'>
+        <path d='M15 18l-6-6 6-6'/>
+      </symbol>
+      <symbol id='i-right' viewBox='0 0 24 24'>
+        <path d='M9 18l6-6-6-6'/>
+      </symbol>
+      <symbol id='i-arrow' viewBox='0 0 24 24'>
+        <path d='M5 12h14M12 5l7 7-7 7'/>
+      </symbol>
+      <symbol id='i-book' viewBox='0 0 24 24'>
+        <path d='M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2zM22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z'/>
+      </symbol>
+      <symbol id='i-clock' viewBox='0 0 24 24'>
+        <path d='M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 6v6l4 2'/>
+      </symbol>
+      <symbol id='i-phone' viewBox='0 0 24 24'>
+        <path d='M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z'/>
+      </symbol>
+      <symbol id='i-mail' viewBox='0 0 24 24'>
+        <path d='M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM22 6l-10 7L2 6'/>
+      </symbol>
+      <symbol id='i-map' viewBox='0 0 24 24'>
+        <path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0zM12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/>
+      </symbol>
+      <symbol id='i-calendar' viewBox='0 0 24 24'>
+        <path d='M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zM16 2v4M8 2v4M3 10h18'/>
+      </symbol>
+      <symbol id='i-user' viewBox='0 0 24 24'>
+        <path d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z'/>
+      </symbol>
+      <symbol id='i-chat' viewBox='0 0 24 24'>
+        <path d='M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z'/>
+      </symbol>
+      <symbol id='i-tag' viewBox='0 0 24 24'>
+        <path d='M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82zM7 7h.01'/>
+      </symbol>
+      <symbol id='i-link' viewBox='0 0 24 24'>
+        <path d='M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/>
+      </symbol>
+      <symbol id='i-home' viewBox='0 0 24 24'>
+        <path d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM9 22V12h6v10'/>
+      </symbol>
+      <symbol id='i-whatsapp' viewBox='0 0 24 24'>
+        <path d='M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z'/>
+      </symbol>
+      <symbol id='i-facebook' viewBox='0 0 24 24'>
+        <path d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z'/>
+      </symbol>
+      <symbol id='i-instagram' viewBox='0 0 24 24'>
+        <path d='M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5zM16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01'/>
+      </symbol>
+      <symbol id='i-youtube' viewBox='0 0 24 24'>
+        <path d='M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33zM9.75 15.02l5.75-3.27-5.75-3.27z'/>
+      </symbol>
+      <symbol id='i-tiktok' viewBox='0 0 24 24'>
+        <path d='M9 12a4 4 0 1 0 4 4V2a5 5 0 0 0 5 5'/>
+      </symbol>
+      <symbol id='i-x-logo' viewBox='0 0 24 24'>
+        <path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z' fill='currentColor' stroke='none'/>
+      </symbol>
+      <symbol id='i-telegram' viewBox='0 0 24 24'>
+        <path d='M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z'/>
+      </symbol>
+    </svg>
+
+    <!-- ===== Topbar ===== -->
+    <div class='topbar'>
+      <div class='container'>
+        <b:section class='topbar-info' id='topbar' maxwidgets='1' name='Topbar (Info Singkat)' showaddelement='yes'>
+          <b:widget id='HTML10' locked='false' title='Info Topbar' type='HTML' visible='true'>
+            <b:widget-settings>
+              <b:widget-setting name='content'><![CDATA[<span><svg class="ic"><use href="#i-clock"/></svg> Senin–Jumat, 07.30–16.00</span>
+<span><svg class="ic"><use href="#i-phone"/></svg> (021) 1234-5678</span>
+<span><svg class="ic"><use href="#i-mail"/></svg> perpustakaan@sekolah.sch.id</span>]]></b:widget-setting>
+            </b:widget-settings>
+            <b:includable id='main'>
+              <div class='widget-content'>
+                <data:content/>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+        <div class='topbar-right'>
+          <span>Selamat datang di <data:blog.title/>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== Header ===== -->
+    <header class='site-header' id='site-header'>
+      <div class='container'>
+        <div class='header-inner'>
+          <button aria-label='Buka menu' class='icon-btn menu-toggle js-drawer' type='button'>
+            <svg class='ic'>
+              <use href='#i-menu'/>
+            </svg>
+          </button>
+          <b:section class='header-logo' id='header-logo' maxwidgets='1' name='Logo / Judul Blog' showaddelement='no'>
+            <b:widget id='Header1' locked='true' title='Perpustakaan Sekolah (Header)' type='Header' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='displayUrl'/>
+                <b:widget-setting name='displayHeight'>0</b:widget-setting>
+                <b:widget-setting name='sectionWidth'>-1</b:widget-setting>
+                <b:widget-setting name='useImage'>false</b:widget-setting>
+                <b:widget-setting name='shrinkToFit'>false</b:widget-setting>
+                <b:widget-setting name='imagePlacement'>BEHIND</b:widget-setting>
+                <b:widget-setting name='displayWidth'>0</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main' var='this'>
+                <a class='brand' expr:href='data:blog.homepageUrl' expr:title='data:blog.title.escaped' rel='home'>
+                  <b:if cond='data:imagePlacement in {&quot;REPLACE&quot;, &quot;BEFORE_DESCRIPTION&quot;}'>
+                    <img class='brand-logo' expr:alt='data:blog.title.escaped' expr:src='data:image'/>
+                    <b:else/>
+                    <span class='brand-mark'>
+                      <svg class='ic'>
+                        <use href='#i-book'/>
+                      </svg>
+                    </span>
+                    <span class='brand-text'>
+                      <span class='brand-title'>
+                        <data:title/>
+                      </span>
+                      <b:if cond='data:this.description'>
+                        <span class='brand-desc'>
+                          <data:this.description/>
+                        </span>
+                      </b:if>
+                    </span>
+                  </b:if>
+                </a>
+              </b:includable>
+            </b:widget>
+          </b:section>
+          <nav aria-label='Menu utama' class='main-nav'>
+            <b:section class='main-menu' id='main-menu' maxwidgets='1' name='Menu Utama (awali _ untuk sub-menu, link mega:Label untuk mega menu)' showaddelement='no'>
+              <b:widget id='LinkList1' locked='true' title='Menu Utama' type='LinkList' visible='true'>
+                <b:widget-settings>
+                  <b:widget-setting name='sorting'>NONE</b:widget-setting>
+                  <b:widget-setting name='text-0'>Beranda</b:widget-setting>
+                  <b:widget-setting name='link-0'>/</b:widget-setting>
+                  <b:widget-setting name='text-1'>Profil</b:widget-setting>
+                  <b:widget-setting name='link-1'>#</b:widget-setting>
+                  <b:widget-setting name='text-2'>_Sejarah Perpustakaan</b:widget-setting>
+                  <b:widget-setting name='link-2'>/p/sejarah.html</b:widget-setting>
+                  <b:widget-setting name='text-3'>_Visi &amp; Misi</b:widget-setting>
+                  <b:widget-setting name='link-3'>/p/visi-misi.html</b:widget-setting>
+                  <b:widget-setting name='text-4'>_Struktur Organisasi</b:widget-setting>
+                  <b:widget-setting name='link-4'>/p/struktur-organisasi.html</b:widget-setting>
+                  <b:widget-setting name='text-5'>_Tata Tertib</b:widget-setting>
+                  <b:widget-setting name='link-5'>/p/tata-tertib.html</b:widget-setting>
+                  <b:widget-setting name='text-6'>Koleksi</b:widget-setting>
+                  <b:widget-setting name='link-6'>mega:Koleksi</b:widget-setting>
+                  <b:widget-setting name='text-7'>Layanan</b:widget-setting>
+                  <b:widget-setting name='link-7'>#</b:widget-setting>
+                  <b:widget-setting name='text-8'>_Peminjaman Buku</b:widget-setting>
+                  <b:widget-setting name='link-8'>/p/peminjaman.html</b:widget-setting>
+                  <b:widget-setting name='text-9'>_Keanggotaan</b:widget-setting>
+                  <b:widget-setting name='link-9'>/p/keanggotaan.html</b:widget-setting>
+                  <b:widget-setting name='text-10'>_E-Resources</b:widget-setting>
+                  <b:widget-setting name='link-10'>/p/e-resources.html</b:widget-setting>
+                  <b:widget-setting name='text-11'>Berita</b:widget-setting>
+                  <b:widget-setting name='link-11'>mega:Berita</b:widget-setting>
+                  <b:widget-setting name='text-12'>Kontak</b:widget-setting>
+                  <b:widget-setting name='link-12'>/p/kontak.html</b:widget-setting>
+                </b:widget-settings>
+                <b:includable id='main' var='this'>
+                  <ul class='nav-menu' id='nav-menu'>
+                    <b:loop values='data:links' var='link'>
+                      <li>
+                        <b:if cond='data:link.target contains &quot;mega:&quot;'>
+                          <b:class name='has-mega'/>
+                          <a expr:data-mega='data:link.target' href='#'>
+                            <data:link.name/>
+                          </a>
+                          <b:else/>
+                          <a expr:href='data:link.target'>
+                            <data:link.name/>
+                          </a>
+                        </b:if>
+                      </li>
+                    </b:loop>
+                  </ul>
+                </b:includable>
+              </b:widget>
+            </b:section>
+          </nav>
+          <div class='header-actions'>
+            <button aria-label='Cari' class='icon-btn js-search' type='button'>
+              <svg class='ic'>
+                <use href='#i-search'/>
+              </svg>
+            </button>
+            <button aria-label='Ganti mode gelap' class='icon-btn js-dark' type='button'>
+              <svg class='ic i-moon'>
+                <use href='#i-moon'/>
+              </svg>
+              <svg class='ic i-sun'>
+                <use href='#i-sun'/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class='search-panel' id='search-panel'>
+        <div class='container'>
+          <form class='sp-form' expr:action='data:blog.searchUrl' method='get' role='search'>
+            <svg class='ic'>
+              <use href='#i-search'/>
+            </svg>
+            <input aria-label='Kata kunci' autocomplete='off' id='sp-q' name='q' placeholder='Ketik kata kunci lalu tekan Enter…' type='search'/>
+            <button aria-label='Tutup pencarian' class='icon-btn js-search' type='button'>
+              <svg class='ic'>
+                <use href='#i-x'/>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <b:if cond='data:view.isHomepage or data:view.isLayoutMode'>
+      <!-- ===== Hero ===== -->
+      <section class='hero'>
+        <div class='container hero-grid'>
+          <div class='hero-text'>
+            <b:section class='hero-intro' id='hero' maxwidgets='2' name='Hero: Judul, Deskripsi &amp; URL Pencarian OPAC' showaddelement='no'>
+              <b:widget id='HTML1' locked='true' title='Jendela Ilmu, Sumber Inspirasi Siswa' type='HTML' visible='true'>
+                <b:widget-settings>
+                  <b:widget-setting name='content'><![CDATA[Temukan ribuan koleksi buku, e-book, dan sumber belajar digital. Pinjam, baca, dan tumbuhkan budaya literasi bersama perpustakaan sekolah kita.]]></b:widget-setting>
+                </b:widget-settings>
+                <b:includable id='main'>
+                  <span class='hero-badge'>
+                    <span class='dot'/>
+ Perpustakaan <data:blog.title/>
+                  </span>
+                  <h1 class='hero-title'>
+                    <data:title/>
+                  </h1>
+                  <div class='hero-desc'>
+                    <data:content/>
+                  </div>
+                </b:includable>
+              </b:widget>
+              <b:widget id='HTML2' locked='true' title='URL Pencarian OPAC' type='HTML' visible='true'>
+                <b:widget-settings>
+                  <b:widget-setting name='content'/>
+                </b:widget-settings>
+                <b:includable id='main'>
+                  <div class='opac-config' expr:data-url='data:content' hidden='hidden'/>
+                </b:includable>
+              </b:widget>
+            </b:section>
+            <form class='hero-search' expr:action='data:blog.searchUrl' id='hero-search' method='get' role='search'>
+              <div class='hs-tabs'>
+                <button class='hs-tab' data-mode='opac' type='button'>📚 Katalog Buku</button>
+                <button class='hs-tab' data-mode='blog' type='button'>📰 Artikel &amp; Info</button>
+              </div>
+              <div class='hs-field'>
+                <svg class='ic'>
+                  <use href='#i-search'/>
+                </svg>
+                <input aria-label='Kata kunci pencarian' autocomplete='off' id='hero-q' name='q' placeholder='Cari artikel, berita, atau informasi…' type='search'/>
+                <button class='btn btn-accent' type='submit'>Cari</button>
+              </div>
+            </form>
+            <b:section class='hero-links' id='hero-links' maxwidgets='1' name='Hero: Tautan Cepat (OPAC, E-Book, dll.)' showaddelement='no'>
+              <b:widget id='LinkList2' locked='true' title='Akses cepat:' type='LinkList' visible='true'>
+                <b:widget-settings>
+                  <b:widget-setting name='sorting'>NONE</b:widget-setting>
+                  <b:widget-setting name='text-0'>🔎 OPAC</b:widget-setting>
+                  <b:widget-setting name='link-0'>#</b:widget-setting>
+                  <b:widget-setting name='text-1'>📱 E-Book</b:widget-setting>
+                  <b:widget-setting name='link-1'>/p/e-resources.html</b:widget-setting>
+                  <b:widget-setting name='text-2'>🎓 Rumah Belajar</b:widget-setting>
+                  <b:widget-setting name='link-2'>https://belajar.id/</b:widget-setting>
+                  <b:widget-setting name='text-3'>🏛️ iPusnas</b:widget-setting>
+                  <b:widget-setting name='link-3'>https://ipusnas.perpusnas.go.id/</b:widget-setting>
+                </b:widget-settings>
+                <b:includable id='main' var='this'>
+                  <div class='quick-links'>
+                    <b:if cond='data:title != &quot;&quot;'>
+                      <span class='ql-label'>
+                        <data:title/>
+                      </span>
+                    </b:if>
+                    <b:loop values='data:links' var='link'>
+                      <a expr:href='data:link.target'>
+                        <data:link.name/>
+                      </a>
+                    </b:loop>
+                  </div>
+                </b:includable>
+              </b:widget>
+            </b:section>
+          </div>
+          <div aria-hidden='true' class='hero-art'>
+            <div class='ha-glow'/>
+            <div class='ha-book b1'>
+              <span class='ha-lines'/>
+            </div>
+            <div class='ha-book b2'>
+              <span class='ha-lines'/>
+            </div>
+            <div class='ha-book b3'>
+              <span class='ha-lines'/>
+            </div>
+            <div class='ha-chip c1'>
+              <span>📖</span> Membaca</div>
+            <div class='ha-chip c2'>
+              <span>💡</span> Belajar</div>
+            <div class='ha-chip c3'>
+              <span>🌱</span> Bertumbuh</div>
+          </div>
+        </div>
+        <svg aria-hidden='true' class='hero-wave' preserveAspectRatio='none' viewBox='0 0 1440 90'>
+          <path d='M0,50 C240,95 480,5 720,40 C960,75 1200,15 1440,50 L1440,90 L0,90 Z'/>
+        </svg>
+      </section>
+
+      <!-- ===== Statistik ===== -->
+      <div class='stats-wrap'>
+        <div class='container'>
+          <b:section class='stats' id='stats' maxwidgets='1' name='Statistik Perpustakaan' showaddelement='no'>
+            <b:widget id='HTML3' locked='true' title='Statistik Perpustakaan' type='HTML' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<div class="stats-grid">
+<div class="stat reveal"><span class="stat-ico">📚</span><div><b class="stat-num" data-count="12500" data-suffix="+">12.500+</b><span class="stat-label">Koleksi Buku</span></div></div>
+<div class="stat reveal"><span class="stat-ico">🧑‍🎓</span><div><b class="stat-num" data-count="1850">1.850</b><span class="stat-label">Anggota Aktif</span></div></div>
+<div class="stat reveal"><span class="stat-ico">💻</span><div><b class="stat-num" data-count="3200" data-suffix="+">3.200+</b><span class="stat-label">E-Book &amp; Jurnal</span></div></div>
+<div class="stat reveal"><span class="stat-ico">🔁</span><div><b class="stat-num" data-count="540">540</b><span class="stat-label">Peminjaman / Bulan</span></div></div>
+</div>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'>
+                <h2 class='sr-only'>
+                  <data:title/>
+                </h2>
+                <data:content/>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </div>
+
+      <!-- ===== Kategori Koleksi ===== -->
+      <div class='home-block'>
+        <div class='container'>
+          <b:section class='categories' id='categories' maxwidgets='1' name='Kategori Koleksi (Emoji + Nama)' showaddelement='no'>
+            <b:widget id='LinkList3' locked='true' title='Jelajahi Koleksi' type='LinkList' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='sorting'>NONE</b:widget-setting>
+                <b:widget-setting name='text-0'>📖 Fiksi &amp; Novel</b:widget-setting>
+                <b:widget-setting name='link-0'>/search/label/Fiksi</b:widget-setting>
+                <b:widget-setting name='text-1'>🔬 Sains &amp; Teknologi</b:widget-setting>
+                <b:widget-setting name='link-1'>/search/label/Sains</b:widget-setting>
+                <b:widget-setting name='text-2'>🌏 Sejarah &amp; Sosial</b:widget-setting>
+                <b:widget-setting name='link-2'>/search/label/Sejarah</b:widget-setting>
+                <b:widget-setting name='text-3'>🧮 Buku Pelajaran</b:widget-setting>
+                <b:widget-setting name='link-3'>/search/label/Pelajaran</b:widget-setting>
+                <b:widget-setting name='text-4'>🎨 Seni &amp; Budaya</b:widget-setting>
+                <b:widget-setting name='link-4'>/search/label/Seni</b:widget-setting>
+                <b:widget-setting name='text-5'>🧒 Bacaan Anak</b:widget-setting>
+                <b:widget-setting name='link-5'>/search/label/Anak</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main' var='this'>
+                <div class='section-head reveal'>
+                  <div>
+                    <span class='st-kicker'>Kategori</span>
+                    <h2 class='section-title'>
+                      <data:title/>
+                    </h2>
+                  </div>
+                </div>
+                <div class='cat-grid'>
+                  <b:loop values='data:links' var='link'>
+                    <a class='cat reveal' expr:href='data:link.target'>
+                      <span class='cat-ico'/>
+                      <span class='cat-name'>
+                        <data:link.name/>
+                      </span>
+                      <span class='cat-go'>Lihat koleksi →</span>
+                    </a>
+                  </b:loop>
+                </div>
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+      </div>
+
+      <!-- ===== Koleksi Buku Terbaru ===== -->
+      <div class='home-block'>
+        <div class='container'>
+          <b:section class='books' id='books' maxwidgets='1' name='Koleksi Buku Terbaru (isi = nama label)' showaddelement='no'>
+            <b:widget id='HTML4' locked='true' title='Koleksi Buku Terbaru' type='HTML' visible='true'>
+              <b:widget-settings>
+                <b:widget-setting name='content'>Koleksi</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'>
+                <div class='section-head reveal'>
+                  <div>
+                    <span class='st-kicker'>Rak Baru</span>
+                    <h2 class='section-title'>
+                      <data:title/>
+                    </h2>
+                  </div>
+                  <div class='sh-actions'>
+                    <button aria-label='Sebelumnya' class='slider-btn' data-dir='-1' type='button'>
+                      <svg class='ic'>
+                        <use href='#i-left'/>
+                      </svg>
+                    </button>
+                    <button aria-label='Berikutnya' class='slider-btn' data-dir='1' type='button'>
+                      <svg class='ic'>
+                        <use href='#i-right'/>
+                      </svg>
+                    </button>
+                    <a class='link-more' expr:href='&quot;/search/label/&quot; + data:content'>Lihat semua <svg class='ic'>
+                      <use href='#i-arrow'/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <div class='book-row' expr:data-label='data:content'>
+                <div class='skel skel-book'/>
+                <div class='skel skel-book'/>
+                <div class='skel skel-book'/>
+                <div class='skel skel-book'/>
+                <div class='skel skel-book'/>
+                <div class='skel skel-book'/>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </div>
+    </div>
+
+    <!-- ===== Berita & Pengumuman ===== -->
+    <div class='home-block'>
+      <div class='container'>
+        <b:section class='news' id='news' maxwidgets='1' name='Berita &amp; Pengumuman (isi = nama label)' showaddelement='no'>
+          <b:widget id='HTML5' locked='true' title='Berita &amp; Pengumuman' type='HTML' visible='true'>
+            <b:widget-settings>
+              <b:widget-setting name='content'>Berita</b:widget-setting>
+            </b:widget-settings>
+            <b:includable id='main'>
+              <div class='section-head reveal'>
+                <div>
+                  <span class='st-kicker'>Kabar Terkini</span>
+                  <h2 class='section-title'>
+                    <data:title/>
+                  </h2>
+                </div>
+                <a class='link-more' expr:href='&quot;/search/label/&quot; + data:content'>Semua berita <svg class='ic'>
+                  <use href='#i-arrow'/>
+                </svg>
+              </a>
+            </div>
+            <div class='news-wrap' expr:data-label='data:content'>
+              <div class='skel' style='min-height:420px'/>
+              <div class='news-list'>
+                <div class='skel' style='height:108px'/>
+                <div class='skel' style='height:108px'/>
+                <div class='skel' style='height:108px'/>
+                <div class='skel' style='height:108px'/>
+              </div>
+            </div>
+          </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+  </div>
+</b:if>
+
+<!-- ===== Iklan Atas ===== -->
+<b:if cond='data:view.isLayoutMode or (data:widgets any w =&gt; w.sectionId == &quot;ads-top&quot;)'>
+  <div class='top-ads'>
+    <div class='container'>
+      <b:section class='ads-zone' id='ads-top' maxwidgets='1' name='Iklan: Atas Konten (AdSense/HTML)' showaddelement='yes'/>
+    </div>
+  </div>
+</b:if>
+
+<!-- ===== Konten Utama ===== -->
+<main class='main-wrap' id='main-content'>
+  <div class='container main-grid'>
+    <div class='content-col'>
+      <b:section class='main' id='main' maxwidgets='1' name='Postingan Blog' showaddelement='no'>
+        <b:widget id='Blog1' locked='true' title='Postingan Blog' type='Blog' visible='true'>
+          <b:widget-settings>
+            <b:widget-setting name='showDateHeader'>false</b:widget-setting>
+            <b:widget-setting name='commentLabel'>Komentar</b:widget-setting>
+            <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+            <b:widget-setting name='authorLabel'>Oleh</b:widget-setting>
+            <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+            <b:widget-setting name='showAuthor'>true</b:widget-setting>
+            <b:widget-setting name='timestampLabel'/>
+            <b:widget-setting name='reactionsLabel'/>
+            <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
+            <b:widget-setting name='showLabels'>true</b:widget-setting>
+            <b:widget-setting name='showLocation'>false</b:widget-setting>
+            <b:widget-setting name='postLabelsLabel'>Label</b:widget-setting>
+            <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+            <b:widget-setting name='postsPerAd'>1</b:widget-setting>
+            <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+            <b:widget-setting name='showInlineAds'>false</b:widget-setting>
+            <b:widget-setting name='showReactions'>false</b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main' var='this'>
+            <b:if cond='data:view.isError'>
+              <b:include name='pk-404'/>
+              <b:else/>
+              <b:include cond='data:view.isMultipleItems' name='pk-archive-head'/>
+              <b:if cond='data:posts.empty'>
+                <div class='empty-state'>
+                  <div class='big'>🔍</div>
+                  <h2>Belum ada hasil</h2>
+                  <p>Coba kata kunci lain atau jelajahi kategori koleksi kami.</p>
+                  <a class='btn btn-primary' expr:href='data:blog.homepageUrl'>
+                    <svg class='ic'>
+                      <use href='#i-home'/>
+                    </svg> Kembali ke Beranda</a>
+                </div>
+                <b:else/>
+                <b:if cond='data:view.isMultipleItems'>
+                  <div class='post-grid' expr:data-label='data:view.search.label ? data:view.search.label : &quot;&quot;'>
+                    <b:loop index='i' values='data:posts' var='post'>
+                      <b:include data='post' name='pk-card'/>
+                    </b:loop>
+                  </div>
+                  <b:include name='pk-pager'/>
+                  <b:else/>
+                  <b:loop values='data:posts' var='post'>
+                    <b:include data='post' name='pk-single'/>
+                  </b:loop>
+                </b:if>
+              </b:if>
+            </b:if>
+          </b:includable>
+          <b:includable id='pk-archive-head'>
+            <b:if cond='data:view.search.label'>
+              <div class='archive-head'>
+                <h1 class='section-title'>
+                  <span class='st-kicker'>Kategori</span>
+                  <data:view.search.label/>
+                </h1>
+              </div>
+              <b:elseif cond='data:view.search.query'/>
+              <div class='archive-head'>
+                <h1 class='section-title'>
+                  <span class='st-kicker'>Hasil Pencarian</span>“                  <data:view.search.query/>
+”</h1>
+              </div>
+              <b:elseif cond='data:view.isArchive'/>
+              <div class='archive-head'>
+                <h1 class='section-title'>
+                  <span class='st-kicker'>Arsip</span>
+                  <data:view.archive.rangeMessage/>
+                </h1>
+              </div>
+              <b:else/>
+              <div class='section-head'>
+                <div>
+                  <span class='st-kicker'>Terbaru</span>
+                  <h2 class='section-title'>Artikel &amp; Informasi</h2>
+                </div>
+              </div>
+            </b:if>
+          </b:includable>
+          <b:includable id='pk-card' var='post'>
+            <article class='post-card reveal'>
+              <a class='card-thumb' expr:aria-label='data:post.title' expr:href='data:post.url'>
+                <b:if cond='data:post.featuredImage'>
+                  <img expr:alt='data:post.title' expr:data-cover='resizeImage(data:post.featuredImage, 400, &quot;2:3&quot;)' expr:src='resizeImage(data:post.featuredImage, 640, &quot;5:3&quot;)' loading='lazy'/>
+                  <b:else/>
+                  <span class='ph'>
+                    <svg class='ic'>
+                      <use href='#i-book'/>
+                    </svg>
+                  </span>
+                </b:if>
+                <b:if cond='data:post.labels'>
+                  <span class='chip'>
+                    <data:post.labels.first.name/>
+                  </span>
+                </b:if>
+              </a>
+              <div class='card-body'>
+                <h3 class='card-title'>
+                  <a expr:href='data:post.url'>
+                    <b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/>
+                  </a>
+                </h3>
+                <p class='card-excerpt'>
+                  <b:eval expr='data:post.snippets.long snippet { length: 140 }'/>
+                </p>
+                <div class='card-meta'>
+                  <span>
+                    <svg class='ic'>
+                      <use href='#i-calendar'/>
+                    </svg>
+                    <time expr:datetime='data:post.date.iso8601'>
+                      <data:post.date/>
+                    </time>
+                  </span>
+                  <a class='card-more' expr:href='data:post.url'>Baca <svg class='ic'>
+                    <use href='#i-arrow'/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        </b:includable>
+        <b:includable id='pk-pager'>
+          <nav aria-label='Navigasi halaman' class='pager'>
+            <b:if cond='data:newerPageUrl'>
+              <a class='btn btn-ghost' expr:href='data:newerPageUrl.canonical'>
+                <svg class='ic'>
+                  <use href='#i-left'/>
+                </svg> Lebih Baru</a>
+            </b:if>
+            <b:if cond='data:olderPageUrl'>
+              <a class='btn btn-primary js-loadmore' expr:href='data:olderPageUrl.canonical'>Muat Lebih Banyak <svg class='ic'>
+                <use href='#i-chevron'/>
+              </svg>
+            </a>
+          </b:if>
+        </nav>
+      </b:includable>
+      <b:includable id='pk-single' var='post'>
+        <article class='single'>
+          <b:if cond='data:view.isPost'>
+            <nav aria-label='Breadcrumb' class='breadcrumb'>
+              <a expr:href='data:blog.homepageUrl'>Beranda</a>
+              <b:if cond='data:post.labels'>
+                <span class='sep'>/</span>
+                <a expr:href='data:post.labels.first.url'>
+                  <data:post.labels.first.name/>
+                </a>
+              </b:if>
+            </nav>
+          </b:if>
+          <h1 class='single-title'>
+            <b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/>
+          </h1>
+          <b:if cond='data:view.isPost'>
+            <div class='single-meta'>
+              <span class='meta-author'>
+                <b:if cond='data:post.author.authorPhoto.image'>
+                  <img expr:alt='data:post.author.name' expr:src='resizeImage(data:post.author.authorPhoto.image, 64, &quot;1:1&quot;)' loading='lazy'/>
+                  <b:else/>
+                  <span class='meta-avatar'>
+                    <svg class='ic'>
+                      <use href='#i-user'/>
+                    </svg>
+                  </span>
+                </b:if>
+                <data:post.author.name/>
+              </span>
+              <span>
+                <svg class='ic'>
+                  <use href='#i-calendar'/>
+                </svg>
+                <time expr:datetime='data:post.date.iso8601'>
+                  <data:post.date/>
+                </time>
+              </span>
+              <b:if cond='data:post.allowComments'>
+                <a href='#comments'>
+                  <svg class='ic'>
+                    <use href='#i-chat'/>
+                  </svg>
+                  <data:post.numberOfComments/>
+ Komentar</a>
+              </b:if>
+            </div>
+            <b:else/>
+            <div class='single-meta'/>
+          </b:if>
+          <div class='ad-slot' id='pk-ad-top'/>
+          <div class='post-body entry-content' expr:id='&quot;post-body-&quot; + data:post.id'>
+            <data:post.body/>
+          </div>
+          <div class='ad-slot' id='pk-ad-bottom'/>
+          <b:if cond='data:view.isPost'>
+            <b:if cond='data:post.labels'>
+              <div class='post-tags'>
+                <span class='lbl'>
+                  <svg class='ic'>
+                    <use href='#i-tag'/>
+                  </svg> Label:</span>
+                <b:loop values='data:post.labels' var='label'>
+                  <a class='chip' expr:href='data:label.url' rel='tag'>
+                    <data:label.name/>
+                  </a>
+                </b:loop>
+              </div>
+            </b:if>
+            <div class='post-share'>
+              <span class='lbl'>Bagikan artikel ini</span>
+              <a aria-label='Bagikan ke WhatsApp' class='share-btn wa' data-share='wa' href='#'>
+                <svg class='ic'>
+                  <use href='#i-whatsapp'/>
+                </svg>
+              </a>
+              <a aria-label='Bagikan ke Facebook' class='share-btn fb' data-share='fb' href='#'>
+                <svg class='ic'>
+                  <use href='#i-facebook'/>
+                </svg>
+              </a>
+              <a aria-label='Bagikan ke X' class='share-btn x' data-share='x' href='#'>
+                <svg class='ic'>
+                  <use href='#i-x-logo'/>
+                </svg>
+              </a>
+              <a aria-label='Bagikan ke Telegram' class='share-btn tg' data-share='tg' href='#'>
+                <svg class='ic'>
+                  <use href='#i-telegram'/>
+                </svg>
+              </a>
+              <a aria-label='Salin tautan' class='share-btn copy' data-share='copy' href='#'>
+                <svg class='ic'>
+                  <use href='#i-link'/>
+                </svg>
+              </a>
+            </div>
+          </b:if>
+        </article>
+        <b:if cond='data:view.isPost and data:post.labels'>
+          <section class='post-block related single' expr:data-label='data:post.labels.first.name' expr:data-url='data:post.url'>
+            <h3 class='block-title'>Bacaan Terkait</h3>
+            <div class='related-grid'>
+              <div class='skel' style='height:180px'/>
+              <div class='skel' style='height:180px'/>
+              <div class='skel' style='height:180px'/>
+            </div>
+          </section>
+        </b:if>
+        <b:if cond='data:view.isPost'>
+          <nav aria-label='Navigasi postingan' class='post-nav'>
+            <b:if cond='data:newerPageUrl'>
+              <a class='prev' expr:href='data:newerPageUrl.canonical'>
+                <span class='pn-dir'>← Sebelumnya</span>
+                <span class='pn-txt'>Postingan lebih baru</span>
+              </a>
+            </b:if>
+            <b:if cond='data:olderPageUrl'>
+              <a class='next' expr:href='data:olderPageUrl.canonical'>
+                <span class='pn-dir'>Berikutnya →</span>
+                <span class='pn-txt'>Postingan lebih lama</span>
+              </a>
+            </b:if>
+          </nav>
+        </b:if>
+        <b:include cond='data:post.allowComments' data='post' name='pk-comments'/>
+      </b:includable>
+      <b:includable id='pk-comments' var='post'>
+        <section class='comments' id='comments'>
+          <a name='comments'/>
+          <h3 class='block-title'>
+            <b:if cond='data:post.numberOfComments != 0'>
+              <data:post.numberOfComments/>
+ Komentar<b:else/>
+Tulis Komentar</b:if>
+          </h3>
+          <b:if cond='data:post.embedCommentForm'>
+            <b:if cond='data:post.numberOfComments != 0'>
+              <div class='comments-content'>
+                <div id='comment-holder'>
+                  <data:post.commentHtml/>
+                </div>
+              </div>
+            </b:if>
+            <b:if cond='data:post.allowNewComments'>
+              <div class='comment-form' id='pk-comment-form'>
+                <a name='comment-form'/>
+                <a class='cancel-reply js-cancel-reply' href='#'>× Batal membalas</a>
+                <b:if cond='data:this.messages.blogComment'>
+                  <p class='comment-note'>
+                    <data:this.messages.blogComment/>
+                  </p>
+                </b:if>
+                <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src' style='display:none'/>
+                <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' frameborder='0' height='90px' id='comment-editor' name='comment-editor' src='' title='Formulir komentar' width='100%'/>
+                <data:post.cmtfpIframe/>
+                <script type='text/javascript'>BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>
+&#39;);</script>
+              </div>
+              <b:else/>
+              <p class='comment-note'>
+                <data:post.noNewCommentsText/>
+              </p>
+            </b:if>
+            <b:else/>
+            <p class='comment-note'>Untuk menampilkan formulir komentar, buka <b>Setelan → Komentar → Lokasi komentar</b> lalu pilih <b>Tersemat</b>.
+            </p>
+          </b:if>
+        </section>
+      </b:includable>
+      <b:includable id='pk-404'>
+        <div class='error-404'>
+          <div class='code'>404</div>
+          <h1>Halaman tidak ditemukan</h1>
+          <p>Sepertinya buku yang Anda cari tidak ada di rak ini. Coba cari dengan kata kunci lain.</p>
+          <form expr:action='data:blog.searchUrl' method='get'>
+            <input aria-label='Kata kunci' name='q' placeholder='Cari sesuatu…' type='search'/>
+            <button class='btn btn-primary' type='submit'>Cari</button>
+          </form>
+          <a class='btn btn-ghost' expr:href='data:blog.homepageUrl'>
+            <svg class='ic'>
+              <use href='#i-home'/>
+            </svg> Ke Beranda</a>
+        </div>
+      </b:includable>
+    </b:widget>
+  </b:section>
+  <!-- Iklan di dalam postingan (dipindahkan otomatis oleh JavaScript) -->
+  <div class='ads-holder'>
+    <b:section class='ads-zone' id='ads-post-top' maxwidgets='1' name='Iklan: Awal Postingan' showaddelement='yes'/>
+    <b:section class='ads-zone' id='ads-post-bottom' maxwidgets='1' name='Iklan: Akhir Postingan' showaddelement='yes'/>
+  </div>
+</div>
+
+<!-- ===== Sidebar ===== -->
+<aside class='sidebar' id='sidebar'>
+  <b:section class='sidebar-widgets' id='sidebar-1' name='Sidebar' showaddelement='yes'>
+    <b:widget id='HTML6' locked='false' title='Jam Layanan' type='HTML' visible='true'>
+      <b:widget-settings>
+        <b:widget-setting name='content'><![CDATA[<ul class="hours-list" data-schedule="1,2,3,4|07:30-16:00;5|07:30-16:30;6|08:00-12:00">
+<li data-days="1,2,3,4"><span>Senin – Kamis</span><b>07.30 – 16.00</b></li>
+<li data-days="5"><span>Jumat</span><b>07.30 – 16.30</b></li>
+<li data-days="6"><span>Sabtu</span><b>08.00 – 12.00</b></li>
+<li data-days="0" class="closed"><span>Minggu &amp; Libur</span><b>Tutup</b></li>
+</ul>
+<p class="hours-note">Istirahat pukul 12.00–13.00 (Jum'at 11.30–13.30). Layanan sirkulasi tutup 15 menit sebelum jam tutup.</p>]]></b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>
+        <b:if cond='data:title != &quot;&quot;'>
+          <h3 class='widget-title'>
+            <data:title/>
+          </h3>
+        </b:if>
+        <div class='widget-content'>
+          <data:content/>
+        </div>
+      </b:includable>
+    </b:widget>
+    <b:widget id='PopularPosts1' locked='false' title='Paling Banyak Dibaca' type='PopularPosts' visible='true'>
+      <b:widget-settings>
+        <b:widget-setting name='numItemsToShow'>5</b:widget-setting>
+        <b:widget-setting name='showThumbnails'>true</b:widget-setting>
+        <b:widget-setting name='showSnippets'>false</b:widget-setting>
+        <b:widget-setting name='timeRange'>LAST_MONTH</b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main' var='this'>
+        <b:if cond='data:title != &quot;&quot;'>
+          <h3 class='widget-title'>
+            <data:title/>
+          </h3>
+        </b:if>
+        <div class='widget-content pop-list'>
+          <b:loop index='i' values='data:posts' var='post'>
+            <a class='pop-item' expr:href='data:post.url'>
+              <span class='pop-thumb'>
+                <span class='pop-num'>
+                  <b:eval expr='data:i + 1'/>
+                </span>
+                <b:if cond='data:post.featuredImage'>
+                  <img expr:alt='data:post.title' expr:src='resizeImage(data:post.featuredImage, 152, &quot;1:1&quot;)' loading='lazy'/>
+                  <b:else/>
+                  <span class='ph'>
+                    <svg class='ic'>
+                      <use href='#i-book'/>
+                    </svg>
+                  </span>
+                </b:if>
+              </span>
+              <span>
+                <span class='pop-title'>
+                  <b:eval expr='data:post.title ? data:post.title : data:messages.noTitle'/>
+                </span>
+                <span class='pop-date'>
+                  <data:post.date/>
+                </span>
+              </span>
+            </a>
+          </b:loop>
+        </div>
+      </b:includable>
+    </b:widget>
+    <b:widget id='Label1' locked='false' title='Label' type='Label' visible='true'>
+      <b:widget-settings>
+        <b:widget-setting name='sorting'>ALPHA</b:widget-setting>
+        <b:widget-setting name='display'>CLOUD</b:widget-setting>
+        <b:widget-setting name='selectedLabelsList'/>
+        <b:widget-setting name='showType'>ALL</b:widget-setting>
+        <b:widget-setting name='showFreqNumbers'>true</b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main' var='this'>
+        <b:if cond='data:title != &quot;&quot;'>
+          <h3 class='widget-title'>
+            <data:title/>
+          </h3>
+        </b:if>
+        <div class='widget-content'>
+          <ul class='chip-cloud'>
+            <b:loop values='data:labels' var='label'>
+              <li>
+                <a class='chip' expr:href='data:label.url'>
+                  <data:label.name/>
+                  <b:if cond='data:this.showFreqNumbers'>
+                    <span class='chip-count'>
+                      <data:label.count/>
+                    </span>
+                  </b:if>
+                </a>
+              </li>
+            </b:loop>
+          </ul>
+        </div>
+      </b:includable>
+    </b:widget>
+  </b:section>
+</aside>
+</div>
+</main>
+
+<!-- ===== Iklan Bawah ===== -->
+<b:if cond='data:view.isLayoutMode or (data:widgets any w =&gt; w.sectionId == &quot;ads-footer&quot;)'>
+<div class='footer-ads'>
+<div class='container'>
+  <b:section class='ads-zone' id='ads-footer' maxwidgets='1' name='Iklan: Atas Footer' showaddelement='yes'/>
+</div>
+</div>
+</b:if>
+
+<!-- ===== Footer ===== -->
+<footer id='footer'>
+<div class='container'>
+<div class='footer-main'>
+  <div class='f-col'>
+    <a class='f-brand' expr:href='data:blog.homepageUrl'>
+      <span class='brand-mark'>
+        <svg class='ic'>
+          <use href='#i-book'/>
+        </svg>
+      </span>
+      <span class='brand-title'>
+        <data:blog.title/>
+      </span>
+    </a>
+    <b:section class='footer-about' id='footer-1' maxwidgets='2' name='Footer: Tentang &amp; Media Sosial' showaddelement='yes'>
+      <b:widget id='HTML8' locked='false' title='' type='HTML' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[Perpustakaan sekolah sebagai pusat sumber belajar yang nyaman, inklusif, dan inspiratif. Mari bersama membangun budaya gemar membaca sejak dini.]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <b:if cond='data:title != &quot;&quot;'>
+            <h3 class='f-title'>
+              <data:title/>
+            </h3>
+          </b:if>
+          <div class='f-content'>
+            <data:content/>
+          </div>
+        </b:includable>
+      </b:widget>
+      <b:widget id='LinkList5' locked='false' title='Media Sosial (nama: facebook, instagram, youtube, tiktok, whatsapp)' type='LinkList' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='sorting'>NONE</b:widget-setting>
+          <b:widget-setting name='text-0'>instagram</b:widget-setting>
+          <b:widget-setting name='link-0'>https://www.instagram.com/alpinjolala/</b:widget-setting>
+          <b:widget-setting name='text-1'>facebook</b:widget-setting>
+          <b:widget-setting name='link-1'>https://facebook.com/</b:widget-setting>
+          <b:widget-setting name='text-2'>youtube</b:widget-setting>
+          <b:widget-setting name='link-2'>https://www.youtube.com/@SenandikaNanAmerta?sub_confirmation=1</b:widget-setting>
+          <b:widget-setting name='text-3'>tiktok</b:widget-setting>
+          <b:widget-setting name='link-3'>https://tiktok.com/</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main' var='this'>
+          <ul class='social'>
+            <b:loop values='data:links' var='link'>
+              <li>
+                <a expr:aria-label='data:link.name' expr:href='data:link.target' rel='noopener' target='_blank'>
+                  <svg class='ic'>
+                    <use expr:href='&quot;#i-&quot; + data:link.name'/>
+                  </svg>
+                </a>
+              </li>
+            </b:loop>
+          </ul>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+  <div class='f-col'>
+    <b:section class='footer-links' id='footer-2' maxwidgets='1' name='Footer: Tautan Penting' showaddelement='yes'>
+      <b:widget id='LinkList4' locked='false' title='Tautan Penting' type='LinkList' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='sorting'>NONE</b:widget-setting>
+          <b:widget-setting name='text-0'>Website Sekolah</b:widget-setting>
+          <b:widget-setting name='link-0'>https://muhalfinramadhan.web.id/</b:widget-setting>
+          <b:widget-setting name='text-1'>Katalog Online (OPAC)</b:widget-setting>
+          <b:widget-setting name='link-1'>https://opac.perpusnas.go.id/</b:widget-setting>
+          <b:widget-setting name='text-2'>Perpustakaan Nasional RI</b:widget-setting>
+          <b:widget-setting name='link-2'>https://www.perpusnas.go.id/</b:widget-setting>
+          <b:widget-setting name='text-3'>iPusnas</b:widget-setting>
+          <b:widget-setting name='link-3'>https://ipusnas.perpusnas.goid/</b:widget-setting>
+          <b:widget-setting name='text-4'>Kebijakan Privasi</b:widget-setting>
+          <b:widget-setting name='link-4'>/p/kebijakan-privasi.html</b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main' var='this'>
+          <b:if cond='data:title != &quot;&quot;'>
+            <h3 class='f-title'>
+              <data:title/>
+            </h3>
+          </b:if>
+          <ul class='f-links'>
+            <b:loop values='data:links' var='link'>
+              <li>
+                <a expr:href='data:link.target'>
+                  <data:link.name/>
+                </a>
+              </li>
+            </b:loop>
+          </ul>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+  <div class='f-col'>
+    <b:section class='footer-contact' id='footer-3' maxwidgets='2' name='Footer: Kontak &amp; Lokasi' showaddelement='yes'>
+      <b:widget id='HTML9' locked='false' title='Kontak &amp; Lokasi' type='HTML' visible='true'>
+        <b:widget-settings>
+          <b:widget-setting name='content'><![CDATA[<ul class="f-contact">
+<li><svg class="ic"><use href="#i-map"/></svg><span>Jl. Pandarapan, Guntung Manggis, Kec. Banjarbaru Selatan, Kota Banjarbaru, Kalimantan Selatan 70732</span></li>
+<li><svg class="ic"><use href="#i-phone"/></svg><span>(021) 1234-5678</span></li>
+<li><svg class="ic"><use href="#i-mail"/></svg><span>perpustakaan@sekolah.sch.id</span></li>
+<li><svg class="ic"><use href="#i-clock"/></svg><span>Senin–Jumat, 07.30–16.00 WIB</span></li>
+</ul>]]></b:widget-setting>
+        </b:widget-settings>
+        <b:includable id='main'>
+          <b:if cond='data:title != &quot;&quot;'>
+            <h3 class='f-title'>
+              <data:title/>
+            </h3>
+          </b:if>
+          <div class='f-content'>
+            <data:content/>
+          </div>
+        </b:includable>
+      </b:widget>
+    </b:section>
+  </div>
+</div>
+</div>
+<div class='footer-bottom'>
+<div class='container'>
+  <span>©    <span class='js-year'>2026</span>
+    <a href="https://www.muhalfinramadhan.web.id/" title="Blogger Templates"> Muhammad Alfin Ramadhan, M.A.</a>
+    <a> Seluruh hak cipta dilindungi.</a>
+  </span>
+  <span>Dibuat dengan ❤️ untuk literasi sekolah</span>
+</div>
+</div>
+</footer>
+
+<!-- ===== Drawer (Menu Mobile) ===== -->
+<div aria-label='Menu' class='drawer' id='drawer' role='dialog'>
+<div class='drawer-head'>
+<a class='brand' expr:href='data:blog.homepageUrl'>
+  <span class='brand-mark'>
+    <svg class='ic'>
+      <use href='#i-book'/>
+    </svg>
+  </span>
+  <span class='brand-title'>
+    <data:blog.title/>
+  </span>
+</a>
+<button aria-label='Tutup menu' class='icon-btn js-drawer' type='button'>
+  <svg class='ic'>
+    <use href='#i-x'/>
+  </svg>
+</button>
+</div>
+<div class='drawer-body'>
+<ul class='drawer-nav' id='drawer-nav'/>
+</div>
+<div class='drawer-foot'>
+<button class='btn btn-ghost js-dark' type='button' style='flex:1'>
+  <svg class='ic i-moon'>
+    <use href='#i-moon'/>
+  </svg> Mode Gelap</button>
+</div>
+</div>
+<div class='overlay js-drawer' id='overlay'/>
+<button aria-label='Kembali ke atas' id='back-top' type='button'>
+<svg class='ic'>
+<use href='#i-up'/>
+</svg>
+</button>
+
+<!-- ===== Main Script ===== -->
+<script type='text/javascript'>
+//<![CDATA[
+(function(){
+'use strict';
+var d=document,html=d.documentElement,body=d.body;
+function $(s,c){return (c||d).querySelector(s)}
+function $$(s,c){return Array.prototype.slice.call((c||d).querySelectorAll(s))}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(m){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]})}
+var BULAN=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+function fmtDate(s){var t=new Date(s);return isNaN(t)?'':t.getDate()+' '+BULAN[t.getMonth()]+' '+t.getFullYear()}
+var PH='<span class="ph"><svg class="ic"><use href="#i-book"/></svg></span>';
+
+/* ---------- Blogger Feed Helpers ---------- */
+var feedCache={};
+function feed(label,n){
+  label=(label||'').trim();
+  var u='/feeds/posts/default'+(label&&label.toLowerCase()!=='recent'?'/-/'+encodeURIComponent(label):'')+'?alt=json&max-results='+n;
+  if(!feedCache[u]){feedCache[u]=fetch(u).then(function(r){if(!r.ok)throw new Error(r.status);return r.json()}).then(function(j){return (j.feed&&j.feed.entry)||[]})}
+  return feedCache[u];
+}
+function eLink(e){for(var i=0;i<e.link.length;i++){if(e.link[i].rel==='alternate')return e.link[i].href}return '#'}
+function eTitle(e){return e.title&&e.title.$t?e.title.$t:'Tanpa judul'}
+function eCats(e){return (e.category||[]).map(function(c){return c.term})}
+function eText(e,n){var h=(e.content||e.summary||{$t:''}).$t;var t=h.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();return t.length>n?t.slice(0,n).replace(/\s\S*$/,'')+'…':t}
+function eImg(e,w,h){
+  var u=e.media$thumbnail?e.media$thumbnail.url:'';
+  if(!u){var m=(e.content||e.summary||{$t:''}).$t.match(/<img[^>]+src=["']([^"']+)["']/i);u=m?m[1]:''}
+  if(!u)return '';
+  if(/youtube\.com|ytimg\.com/.test(u))return u.replace('/default.','/hqdefault.');
+  var s='w'+w+'-h'+h+'-c';
+  return u.replace(/\/s\d+(-c)?\//,'/'+s+'/').replace(/\/w\d+-h\d+[^\/]*\//,'/'+s+'/').replace(/=s\d+(-c)?$/,'='+s).replace(/=w\d+-h\d+[^\/]*$/,'='+s);
+}
+function imgTag(src,alt){return src?'<img loading="lazy" src="'+esc(src)+'" alt="'+esc(alt)+'"/>':PH}
+function normUrl(u){return String(u||'').replace(/^https?:/,'').split('?')[0].split('#')[0]}
+
+/* ---------- Header: sticky shadow, search, dark mode ---------- */
+var header=$('#site-header'),backTop=$('#back-top');
+function onScroll(){var y=window.pageYOffset;if(header)header.classList.toggle('scrolled',y>10);if(backTop)backTop.classList.toggle('show',y>600)}
+window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+if(backTop)backTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+$$('.js-search').forEach(function(b){b.addEventListener('click',function(){var open=body.classList.toggle('search-open');if(open)setTimeout(function(){var i=$('#sp-q');if(i)i.focus()},150)})});
+d.addEventListener('keydown',function(e){if(e.key==='Escape'){body.classList.remove('search-open');body.classList.remove('drawer-open')}});
+$$('.js-dark').forEach(function(b){b.addEventListener('click',function(){var on=html.classList.toggle('dark');try{localStorage.setItem('pk-dark',on?'1':'0')}catch(err){}})});
+$$('.js-year').forEach(function(el){el.textContent=new Date().getFullYear()});
+
+/* ---------- Menu: sub-menu (_ / __) & mega menu ---------- */
+var nav=$('#nav-menu');
+function childUl(li,cls){var ul=null;for(var i=0;i<li.children.length;i++){if(li.children[i].tagName==='UL')ul=li.children[i]}if(!ul){ul=d.createElement('ul');ul.className=cls;li.appendChild(ul)}return ul}
+if(nav){
+  var lastTop=null,lastSub=null;
+  $$('#nav-menu > li').forEach(function(li){
+    var a=li.querySelector('a'),t=a.textContent.trim();
+    if(t.indexOf('__')===0&&lastSub){a.textContent=t.slice(2);childUl(lastSub,'sub-menu').appendChild(li)}
+    else if(t.indexOf('_')===0&&lastTop){a.textContent=t.slice(1);childUl(lastTop,'sub-menu').appendChild(li);lastSub=li}
+    else{lastTop=li;lastSub=null}
+  });
+  $$('li',nav).forEach(function(li){
+    var hasUl=false;for(var i=0;i<li.children.length;i++){if(li.children[i].tagName==='UL')hasUl=true}
+    if(hasUl||li.classList.contains('has-mega')){li.classList.add('has-sub');li.querySelector('a').insertAdjacentHTML('beforeend','<svg class="ic caret"><use href="#i-chevron"/></svg>')}
+  });
+  $$('li.has-mega',nav).forEach(function(li){
+    var a=li.querySelector('a'),label=(a.getAttribute('data-mega')||'').replace(/^mega:/,'').trim(),loaded=false;
+    a.setAttribute('href',label.toLowerCase()==='recent'?'/search':'/search/label/'+encodeURIComponent(label));
+    var box=d.createElement('div');box.className='mega';box.innerHTML='<div class="mega-grid">'+new Array(5).join('<div class="skel" style="height:170px"></div>')+'</div>';li.appendChild(box);
+    function load(){if(loaded)return;loaded=true;feed(label,4).then(function(es){
+      box.innerHTML=es.length?'<div class="mega-grid">'+es.map(function(e){return '<a class="mega-item" href="'+eLink(e)+'"><span class="mega-thumb">'+imgTag(eImg(e,400,250),eTitle(e))+'</span><span class="mega-title">'+esc(eTitle(e))+'</span><span class="mega-date">'+fmtDate(e.published.$t)+'</span></a>'}).join('')+'</div>':'<p class="empty-note">Belum ada postingan dengan label <b>'+esc(label)+'</b>.</p>';
+    }).catch(function(){box.innerHTML='<p class="empty-note">Gagal memuat.</p>'})}
+    li.addEventListener('mouseenter',load);li.addEventListener('focusin',load);
+  });
+  /* Drawer (mobile) */
+  var dn=$('#drawer-nav');
+  if(dn){
+    dn.innerHTML=nav.innerHTML;
+    $$('.mega',dn).forEach(function(m){m.parentNode.removeChild(m)});
+    $$('li',dn).forEach(function(li){
+      var sub=null;for(var i=0;i<li.children.length;i++){if(li.children[i].tagName==='UL')sub=li.children[i]}
+      if(sub){var bt=d.createElement('button');bt.type='button';bt.className='sub-toggle';bt.setAttribute('aria-label','Buka sub-menu');bt.innerHTML='<svg class="ic"><use href="#i-chevron"/></svg>';li.insertBefore(bt,sub);bt.addEventListener('click',function(){li.classList.toggle('open')})}
+    });
+  }
+}
+$$('.js-drawer').forEach(function(b){b.addEventListener('click',function(){body.classList.toggle('drawer-open')})});
+
+/* ---------- Hero search (OPAC / Blog) ---------- */
+var hs=$('#hero-search');
+if(hs){
+  var cfg=$('.opac-config'),opac=cfg?(cfg.getAttribute('data-url')||'').replace(/<[^>]*>/g,'').trim():'',q=$('#hero-q'),mode=opac?'opac':'blog';
+  if(!opac){var ot=$('.hs-tab[data-mode="opac"]',hs);if(ot)ot.parentNode.removeChild(ot);var tb=$('.hs-tabs',hs);if(tb)tb.style.display='none'}
+  var setMode=function(m){mode=m;$$('.hs-tab',hs).forEach(function(t){t.classList.toggle('active',t.getAttribute('data-mode')===m)});q.placeholder=m==='opac'?'Cari judul buku, pengarang, atau subjek di katalog…':'Cari artikel, berita, atau informasi…'};
+  $$('.hs-tab',hs).forEach(function(t){t.addEventListener('click',function(){setMode(t.getAttribute('data-mode'));q.focus()})});
+  setMode(mode);
+  hs.addEventListener('submit',function(e){var v=q.value.trim();if(!v){e.preventDefault();q.focus();return}if(mode==='opac'){e.preventDefault();window.open(opac+encodeURIComponent(v),'_blank','noopener')}});
+  $$('.quick-links a').forEach(function(a){if(/opac/i.test(a.textContent)&&a.getAttribute('href')==='#'&&opac){a.href=opac.replace(/[?&][^?&]*=$/,'')}});
+}
+
+/* ---------- Hero title highlight (kata terakhir diberi gradasi) ---------- */
+var ht=$('.hero-title');
+if(ht&&!ht.querySelector('.hl')){var w=ht.textContent.trim().split(' ');if(w.length>2){var last=w.splice(-2).join(' ');ht.innerHTML=esc(w.join(' '))+' <span class="hl">'+esc(last)+'</span>'}}
+
+/* ---------- Kategori: pisahkan emoji jadi ikon ---------- */
+$$('.cat').forEach(function(c){
+  var n=$('.cat-name',c),ic=$('.cat-ico',c),t=n.textContent.trim(),sp=t.indexOf(' '),first=sp>0?t.slice(0,sp):'';
+  if(first&&!/[A-Za-z0-9\u00C0-\u024F]/.test(first)){ic.textContent=first;n.textContent=t.slice(sp+1)}else{ic.textContent=t.charAt(0).toUpperCase()}
+});
+
+/* ---------- Statistik: animasi hitung ---------- */
+function countUp(el){
+  var end=parseInt(el.getAttribute('data-count'),10)||0,suf=el.getAttribute('data-suffix')||'',t0=null,dur=1600;
+  function step(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/dur,1),v=Math.round(end*(1-Math.pow(1-p,3)));el.textContent=v.toLocaleString('id-ID')+suf;if(p<1)requestAnimationFrame(step)}
+  requestAnimationFrame(step);
+}
+
+/* ---------- Reveal on scroll ---------- */
+var io=('IntersectionObserver' in window)?new IntersectionObserver(function(ents){ents.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');var c=en.target.querySelector('[data-count]');if(c&&!c._done){c._done=1;countUp(c)}io.unobserve(en.target)}})},{rootMargin:'0px 0px -60px 0px',threshold:.08}):null;
+function observe(){$$('.reveal:not(.in)').forEach(function(el,i){if(io){el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)}else{el.classList.add('in')}})}
+observe();
+
+/* ---------- Koleksi Buku Terbaru (slider) ---------- */
+$$('.book-row').forEach(function(row){
+  var label=(row.getAttribute('data-label')||'').replace(/<[^>]*>/g,'').trim();
+  feed(label,12).then(function(es){
+    if(!es.length){row.outerHTML='<p class="empty-note">Belum ada postingan dengan label <b>'+esc(label)+'</b>. Tambahkan label ini pada postingan buku Anda (gambar pertama = sampul).</p>';return}
+    row.innerHTML=es.map(function(e,i){
+      var c=eCats(e).filter(function(x){return x.toLowerCase()!==label.toLowerCase()}),im=eImg(e,300,450);
+      return '<a class="book" href="'+eLink(e)+'"><span class="book-cover">'+(im?'<img loading="lazy" src="'+esc(im)+'" alt="'+esc(eTitle(e))+'"/>':'<span class="book-ph">'+esc(eTitle(e))+'</span>')+(i<3?'<span class="book-badge">Baru</span>':'')+'</span><span class="book-title">'+esc(eTitle(e))+'</span>'+(c[0]?'<span class="book-genre">'+esc(c[0])+'</span>':'')+'</a>';
+    }).join('');
+    /* isi sampul pada ilustrasi hero */
+    var covers=es.map(function(e){return eImg(e,400,600)}).filter(Boolean);
+    $$('.ha-book').forEach(function(b,i){var src=covers[[1,0,2][i]];if(src){b.style.backgroundImage='url("'+src+'")';b.classList.add('has-img')}});
+  }).catch(function(){row.innerHTML='<p class="empty-note">Gagal memuat koleksi.</p>'});
+  var wrap=row.closest('.widget');
+  if(wrap)$$('.slider-btn',wrap).forEach(function(b){b.addEventListener('click',function(){var r=$('.book-row',wrap);if(r)r.scrollBy({left:(parseInt(b.getAttribute('data-dir'),10)||1)*r.clientWidth*.8,behavior:'smooth'})})});
+});
+
+/* ---------- Berita & Pengumuman ---------- */
+$$('.news-wrap').forEach(function(w){
+  var label=(w.getAttribute('data-label')||'').replace(/<[^>]*>/g,'').trim();
+  feed(label,5).then(function(es){
+    if(!es.length){w.outerHTML='<p class="empty-note">Belum ada postingan dengan label <b>'+esc(label)+'</b>.</p>';return}
+    var f=es[0],fc=eCats(f).filter(function(x){return x.toLowerCase()!==label.toLowerCase()})[0]||label;
+    var h='<a class="news-feature reveal" href="'+eLink(f)+'">'+(eImg(f,900,620)?'<img loading="lazy" src="'+esc(eImg(f,900,620))+'" alt="'+esc(eTitle(f))+'"/>':'')+'<span class="nf-body"><span class="chip">'+esc(fc)+'</span><h3 class="nf-title">'+esc(eTitle(f))+'</h3><p class="nf-excerpt">'+esc(eText(f,150))+'</p><span class="nf-date"><svg class="ic"><use href="#i-calendar"/></svg>'+fmtDate(f.published.$t)+'</span></span></a>';
+    h+='<div class="news-list">'+es.slice(1).map(function(e){return '<a class="news-item reveal" href="'+eLink(e)+'"><span class="ni-thumb">'+imgTag(eImg(e,220,170),eTitle(e))+'</span><span><span class="ni-date">'+fmtDate(e.published.$t)+'</span><span class="ni-title">'+esc(eTitle(e))+'</span></span></a>'}).join('')+'</div>';
+    w.innerHTML=h;observe();
+  }).catch(function(){w.innerHTML='<p class="empty-note">Gagal memuat berita.</p>'});
+});
+
+/* ---------- Jam Layanan: status buka/tutup ---------- */
+function toMin(s){var p=String(s).trim().split(':');return (+p[0])*60+(+p[1]||0)}
+$$('[data-schedule]').forEach(function(el){
+  var now=new Date(),day=now.getDay(),mins=now.getHours()*60+now.getMinutes(),open=false,today='';
+  el.getAttribute('data-schedule').split(';').forEach(function(part){
+    var p=part.split('|');if(p.length<2)return;
+    if(p[0].split(',').map(Number).indexOf(day)>-1){var r=p[1].split('-');today=p[1];if(mins>=toMin(r[0])&&mins<toMin(r[1]))open=true}
+  });
+  $$('li[data-days]',el).forEach(function(li){if(li.getAttribute('data-days').split(',').map(Number).indexOf(day)>-1)li.classList.add('today')});
+  var pill=d.createElement('div');pill.className='open-status '+(open?'is-open':'is-closed');
+  pill.innerHTML='<span class="dot"></span>'+(open?'Buka sekarang':'Sedang tutup')+(today?' <small>· hari ini '+esc(today.replace(/:/g,'.').replace('-',' – '))+'</small>':'');
+  el.parentNode.insertBefore(pill,el);
+});
+
+/* ---------- Grid buku otomatis pada halaman label koleksi ---------- */
+var grid=$('.post-grid');
+function bookMode(scope){$$('img[data-cover]',scope||grid).forEach(function(im){im.src=im.getAttribute('data-cover')})}
+if(grid){var gl=(grid.getAttribute('data-label')||'');if(gl&&/koleksi|buku|book|novel|pustaka/i.test(gl)){grid.classList.add('book-grid');bookMode()}}
+
+/* ---------- Muat lebih banyak (AJAX) ---------- */
+var lm=$('.js-loadmore');
+if(lm&&grid){lm.addEventListener('click',function(e){
+  e.preventDefault();if(lm.classList.contains('loading'))return;lm.classList.add('loading');
+  fetch(lm.getAttribute('href')).then(function(r){return r.text()}).then(function(t){
+    var doc=new DOMParser().parseFromString(t,'text/html'),frag=d.createDocumentFragment();
+    $$('.post-grid > .post-card',doc).forEach(function(c){frag.appendChild(d.importNode(c,true))});
+    var tmp=d.createElement('div');tmp.appendChild(frag);if(grid.classList.contains('book-grid'))bookMode(tmp);
+    while(tmp.firstChild)grid.appendChild(tmp.firstChild);
+    var nx=$('.js-loadmore',doc);if(nx){lm.setAttribute('href',nx.getAttribute('href'));lm.classList.remove('loading')}else{lm.parentNode.removeChild(lm)}
+    observe();
+  }).catch(function(){location.href=lm.getAttribute('href')});
+})}
+
+/* ---------- Bagikan ---------- */
+$$('[data-share]').forEach(function(b){b.addEventListener('click',function(e){
+  e.preventDefault();
+  var raw=location.href.split('#')[0].split('?')[0],u=encodeURIComponent(raw),t=encodeURIComponent(d.title),k=b.getAttribute('data-share'),url='';
+  if(k==='copy'){var done=function(){b.classList.add('done');setTimeout(function(){b.classList.remove('done')},1600)};if(navigator.clipboard){navigator.clipboard.writeText(raw).then(done)}else{var ta=d.createElement('textarea');ta.value=raw;body.appendChild(ta);ta.select();d.execCommand('copy');body.removeChild(ta);done()}return}
+  if(k==='wa')url='https://api.whatsapp.com/send?text='+t+'%20'+u;
+  if(k==='fb')url='https://www.facebook.com/sharer/sharer.php?u='+u;
+  if(k==='x')url='https://twitter.com/intent/tweet?text='+t+'&url='+u;
+  if(k==='tg')url='https://t.me/share/url?url='+u+'&text='+t;
+  window.open(url,'_blank','noopener,width=640,height=560');
+})});
+
+/* ---------- Bacaan terkait ---------- */
+var rel=$('.related[data-label]');
+if(rel){var cur=normUrl(rel.getAttribute('data-url'));feed(rel.getAttribute('data-label'),8).then(function(es){
+  es=es.filter(function(e){return normUrl(eLink(e))!==cur}).slice(0,3);
+  if(!es.length){rel.parentNode.removeChild(rel);return}
+  $('.related-grid',rel).innerHTML=es.map(function(e){return '<a class="rel-item" href="'+eLink(e)+'"><span class="rel-thumb">'+imgTag(eImg(e,400,256),eTitle(e))+'</span><span class="rel-title">'+esc(eTitle(e))+'</span><span class="rel-date">'+fmtDate(e.published.$t)+'</span></a>'}).join('');
+}).catch(function(){rel.parentNode.removeChild(rel)})}
+
+/* ---------- Balas komentar ---------- */
+var cf=$('#pk-comment-form');
+if(cf){var home=cf.parentNode,src=$('#comment-editor-src');
+  d.addEventListener('click',function(e){
+    var r=e.target.closest?e.target.closest('.comment-reply'):null;
+    if(r){e.preventDefault();var id=r.getAttribute('data-comment-id');var box=d.getElementById('c'+id+'-ce')||r.parentNode;box.appendChild(cf);cf.classList.add('is-reply');var f=$('#comment-editor');if(f&&src)f.src=src.href+'&parentID='+id;return}
+    var c=e.target.closest?e.target.closest('.js-cancel-reply'):null;
+    if(c){e.preventDefault();home.appendChild(cf);cf.classList.remove('is-reply');var f2=$('#comment-editor');if(f2&&src)f2.src=src.href}
+  });
+}
+
+/* ---------- Pindahkan iklan ke dalam postingan ---------- */
+[['#ads-post-top','#pk-ad-top'],['#ads-post-bottom','#pk-ad-bottom']].forEach(function(p){var from=$(p[0]),to=$(p[1]);if(from&&to){$$('.widget',from).forEach(function(w){to.appendChild(w)})}});
+var holder=$('.ads-holder');if(holder&&!html.classList.contains('layout'))holder.parentNode.removeChild(holder);
+
+/* ---------- Gambar postingan: lazy load ---------- */
+$$('.post-body img').forEach(function(im){if(!im.getAttribute('loading'))im.setAttribute('loading','lazy')});
+})();
+//]]>
+</script>
+</body>
+</html>
